@@ -1,0 +1,8 @@
+@startuml
+
+namespace Core{
+    class a
+    class b
+}
+
+@enduml
