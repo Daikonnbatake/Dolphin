@@ -1,5 +1,5 @@
 #include <Windows.h>
-
+#include "Application.h"
 
 HWND windowHandle;
 LPCWSTR className = L"DolphinApp";
@@ -32,6 +32,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	if (windowHandle == NULL) return 0;
 
+	Dolphin::Core::Application app;
+	app.Initialize();
+	ShowWindow(windowHandle, nCmdShow);
+
 	while (message.message != WM_QUIT)
 	{
 		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
@@ -42,8 +46,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		else
 		{
 			// ÉQÅ[ÉÄÇÃèàóù
+			app.Tick();
 		}
 	}
+
+	app.Release();
 
 	return 0;
 }

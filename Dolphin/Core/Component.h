@@ -16,7 +16,7 @@ namespace Dolphin
 
 
 		// コンストラクタ(object以外からのインスタンス化を許可しない)
-		private:
+		protected:
 			Component(Object* parent);
 
 
