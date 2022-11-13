@@ -1,4 +1,12 @@
-﻿#pragma once
+﻿/*****************************************************************//**
+ * @file   Application.h
+ * @brief  アプリケーションクラスの定義.
+ *
+ * @author かがまーる
+ * @date   November 2022
+ *********************************************************************/
+
+#pragma once
 #include "Core.h"
 #include "Object.h"
 
@@ -6,22 +14,43 @@ namespace Dolphin
 {
 	namespace Core
 	{
+		/**
+		* @brief WinMain からアプリケーション部分の処理を切り出すためのクラス.
+		*/
 		class Application
 		{
-		// 隠しフィールド
 		private:
-			Object* rootObject;
+			Object* rootObject; ///< root オブジェクトへのポインタ.
 
 
 		public:
+			/**
+			* @brief コンストラクタ.
+			*/
 			Application();
+
+
+			/**
+			* @brief デストラクタ.
+			*/
 			~Application();
 
 
-		// 公開メソッド
-		public:
+			/**
+			* @brief 初期化処理.
+			*/
 			void Initialize();
+
+
+			/**
+			* @brief フレーム更新処理.
+			*/
 			void Tick();
+
+
+			/**
+			* @brief 終了処理.
+			*/
 			void Release();
 		};
 	}

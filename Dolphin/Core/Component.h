@@ -1,29 +1,47 @@
-﻿#pragma once
+﻿/*****************************************************************//**
+ * @file   Component.h
+ * @brief  コンポーネントクラスの定義.
+ *
+ * @author かがまーる
+ * @date   November 2022
+ *********************************************************************/
+
+#pragma once
 #include "Core.h"
+
 
 namespace Dolphin
 {
 	namespace Core
 	{
-		// 相互インクルード用プロトタイプ宣言
-		class Object;
+		class Object; // 相互インクルード用プロトタイプ宣言
 
+		/**
+		* @brief コンポーネントのベース.
+		*/
 		class Component
 		{
-		// 隠しフィールド
 		private:
-			Object* parent;
+			Object* parent; ///< 親オブジェクトへのポインタ.
 
 
-		// コンストラクタ(object以外からのインスタンス化を許可しない)
-		protected:
+			/**
+			* @brief
+			* コンストラクタ.\n
+			* Object クラスからのみインスタンス化が可能.
+			* @param[in] parent 親オブジェクトへのポインタ.
+			*/
 			Component(Object* parent);
 
 
-		// デストラクタ
 		public:
-			virtual ~Component(){};
 
+			/**
+			* @brief
+			* デストラクタ.\n
+			* 継承先で必ずオーバーライドすること！(メモリリークの危険ｱﾘ).
+			*/
+			virtual ~Component(){};
 
 		friend class Object;
 		};

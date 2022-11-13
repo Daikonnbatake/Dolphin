@@ -1,13 +1,5 @@
 ﻿#include "Object.h"
 
-C::Object::Object()
-{
-	this->parent = nullptr;
-	this->name = "";
-	this->children = vector<Object*>();
-	this->components = vector<Component*>();
-}
-
 
 C::Object::Object(string name)
 {
