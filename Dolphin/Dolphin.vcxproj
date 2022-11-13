@@ -133,16 +133,11 @@
     <ClInclude Include="Core\Component.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Object.h" />
-    <ClInclude Include="Helper\ReadOnly.h" />
-    <ClInclude Include="Objects\TestObj.h" />
-    <ClInclude Include="Objects\TestComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Component.cpp" />
     <ClCompile Include="Core\Object.cpp" />
-    <ClCompile Include="Objects\TestObj.cpp" />
-    <ClCompile Include="Objects\TestComponent.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

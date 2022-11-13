@@ -1,9 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include <vector>
 #include <string>
 #include <typeinfo>
-#include "ReadOnly.h"
 
 namespace Dolphin
 {
@@ -18,6 +17,5 @@ namespace Dolphin
 		using std::vector;
 		using namespace Dolphin;
 		using namespace Dolphin::Core;
-		using namespace Dolphin::Helper;
 	}
 }

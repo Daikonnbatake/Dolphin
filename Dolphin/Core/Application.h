@@ -1,8 +1,6 @@
-#pragma once
+ï»¿#pragma once
 #include "Core.h"
 #include "Object.h"
-#include "../Objects/TestObj.h"
-#include "../Objects/TestComponent.h"
 
 namespace Dolphin
 {
@@ -10,10 +8,9 @@ namespace Dolphin
 	{
 		class Application
 		{
-		// ‰B‚µƒtƒB[ƒ‹ƒh
+		// éš ã—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 		private:
 			Object* rootObject;
-			TestComponent* test;
 
 
 		public:
@@ -21,7 +18,7 @@ namespace Dolphin
 			~Application();
 
 
-		// ŒöŠJƒƒ\ƒbƒh
+		// å…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰
 		public:
 			void Initialize();
 			void Tick();

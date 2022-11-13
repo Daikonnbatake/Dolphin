@@ -1,3 +1,11 @@
+﻿/*****************************************************************//**
+ * @file   Object.h
+ * @brief  オブジェクトクラスの定義.
+ *
+ * @author かがまーる
+ * @date   November 2022
+ *********************************************************************/
+
 #pragma once
 #include "Core.h"
 #include "Component.h"
@@ -6,9 +14,9 @@ namespace Dolphin
 {
 	namespace Core
 	{
+		/** 全オブジェクトはこのクラスを継承して作成する. */
 		class Object
 		{
-		// �B���t�B�[���h
 		private:
 			bool					isActive;
 			Object*					parent;
@@ -16,28 +24,35 @@ namespace Dolphin
 			vector<Object*>			children;
 			vector<Component*>		components;
 
-		public:
-			// �R���X�g���N�^
+		protected:
 			Object();
+
+		public:
 			Object(string name);
 
-			// �f�X�g���N�^
+			// デストラクタ
 			virtual ~Object();
 
 
 			// getter
-			bool		IsActive();
-			bool		IsRoot();
-			Object*		Parent();
-			string		Name();
+			bool IsActive();
+			bool IsRoot();
+			Object* Parent();
+			string Name();
 
 
-			// ���J���\�b�h
-			static void								Destroy(Object* target);
-			static void								Destroy(Component* target);
-			bool									operator==(const Object& obj);
-			bool									operator!=(const Object& obj);
+			// 公開メソッド
+			static void Destroy(Object* target);
+			static void Destroy(Component* target);
+			bool operator==(const Object& obj);
+			bool operator!=(const Object& obj);
 
+
+			/**
+			 * T 型のコンポーネントを追加する.
+			 *
+			 * \return T* 追加したコンポーネントのインスタンスのポインタ
+			 */
 			template<class T> T* AddComponent()
 			{
 				T* component = new T(this);

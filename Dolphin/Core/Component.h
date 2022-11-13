@@ -1,26 +1,26 @@
-#pragma once
+ï»¿#pragma once
 #include "Core.h"
 
 namespace Dolphin
 {
 	namespace Core
 	{
-		// ‘ŠŒİƒCƒ“ƒNƒ‹[ƒh—pƒvƒƒgƒ^ƒCƒvéŒ¾
+		// ç›¸äº’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ç”¨ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 		class Object;
 
 		class Component
 		{
-		// ‰B‚µƒtƒB[ƒ‹ƒh
+		// éš ã—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 		private:
 			Object* parent;
 
 
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^(objectˆÈŠO‚©‚ç‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‰»‚ğ‹–‰Â‚µ‚È‚¢)
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(objectä»¥å¤–ã‹ã‚‰ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã‚’è¨±å¯ã—ãªã„)
 		protected:
 			Component(Object* parent);
 
 
-		// ƒfƒXƒgƒ‰ƒNƒ^
+		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		public:
 			virtual ~Component(){};
 

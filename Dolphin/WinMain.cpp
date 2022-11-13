@@ -1,4 +1,4 @@
-#include <Windows.h>
+ï»¿#include <Windows.h>
 #include "Application.h"
 
 HWND windowHandle;
@@ -45,7 +45,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 		else
 		{
-			// ƒQ[ƒ€‚Ìˆ—
+			// ã‚²ãƒ¼ãƒ ã®å‡¦ç†
 			app.Tick();
 		}
 	}
