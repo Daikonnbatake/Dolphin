@@ -1,47 +1,104 @@
 ﻿#include "Object.h"
 
 
-C::Object::Object(string name)
+// コンストラクタ
+DolphinCore::Object::Object(string name)
 {
-	this->parent = nullptr;
 	this->name = name;
-	this->children = vector<Object*>();
-	this->components = vector<Component*>();
+	this->onStart = true;
+	this->isActive = true;
+	this->components = new vector<Component*>();
 }
 
 
-C::Object::~Object()
+// 初めて tick が呼ばれたとき
+void DolphinCore::Object::Start()
 {
-	FOREACH(e, this->children) RELEASE(e);
-	FOREACH(e, this->components) RELEASE(e);
+	FOREACH(e, *this->components) e->Start();
+	this->onStart = false;
 }
 
 
-bool			C::Object::IsActive()	{ return this->isActive; }
-bool			C::Object::IsRoot()		{ return this->parent == this; }
-std::string		C::Object::Name()		{ return this-> name; }
-C::Object*		C::Object::Parent()		{ return this->parent; }
+// tick が呼ばれたとき
+void DolphinCore::Object::Tick()
+{
+	if (!this->isActive) return;
+	if (this->onStart) this->Start();
+	FOREACH(e, *this->components) e->Tick();
+}
 
 
-void C::Object::Destroy(Object* target)
+// デストラクタ
+DolphinCore::Object::~Object()
+{
+	FOREACH(e, *this->components) RELEASE(e);
+	RELEASE(this->components);
+}
+
+
+bool			DolphinCore::Object::IsActive()	{ return this->isActive; }
+void			DolphinCore::Object::Enable()	{ this->isActive = true; }
+void			DolphinCore::Object::Disable()	{ this->isActive = false; }
+std::string		DolphinCore::Object::Name()		{ return this->name; }
+
+
+
+template DolphinCore::Component* DolphinCore::Object::AddComponent();
+template<class T> T* DolphinCore::Object::AddComponent()
+{
+	Component* component = new T(this);
+	this->components->push_back(component);
+	return component;
+}
+
+
+template DolphinCore::Component* DolphinCore::Object::GetComponent();
+template<class T> T* DolphinCore::Object::GetComponent()
+{
+	FOREACH(e, *this->components)
+	{
+		T* tmp = dynamic_cast<T*>(e);
+		if (tmp != nullptr) return tmp;
+	}
+	return nullptr;
+}
+
+
+template std::vector<DolphinCore::Component*> DolphinCore::Object::GetComponents();
+template<class T> std::vector<T*> DolphinCore::Object::GetComponents()
+{
+	vector<T*> components;
+	FOREACH(e, *this->components)
+	{
+		T* tmp = dynamic_cast<T*>(e);
+		if (tmp != nullptr) components.push_back(tmp);
+	}
+	return components;
+}
+
+
+void DolphinCore::Object::PopComponent(Component* target)
+{
+	int componentCount = (int)this->components->size();
+	FOR(i, componentCount)
+	{
+		if ((*this->components)[i] == target)
+		{
+			RELEASE(target);
+			this->components->erase(this->components->begin() + i);
+			return;
+		}
+	}
+}
+
+
+DolphinCore::Object* DolphinCore::Object::Instantiate(string name)
+{
+	return new Object(name);
+}
+
+
+void DolphinCore::Object::Destroy(Object* target)
 {
 	RELEASE(target);
-}
-
-
-void C::Object::Destroy(Component* target)
-{
-	RELEASE(target);
-}
-
-
-bool C::Object::operator==(const Object& obj)
-{
-	return typeid(*this).name() == typeid(obj).name();
-}
-
-
-bool C::Object::operator!=(const Object& obj)
-{
-	return typeid(*this).name() != typeid(obj).name();
 }

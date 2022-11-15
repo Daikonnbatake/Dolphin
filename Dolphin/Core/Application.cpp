@@ -1,27 +1,25 @@
 ﻿#include "Application.h"
 
-C::Application::Application()
+
+DolphinCore::Application::Application()
 {
-	this->rootObject = new Object("root");
+	this->rootObject = NEW("name");
+	this->rootObject = nullptr;
+	this->quit = false;
 }
 
 
-C::Application::~Application()
+DolphinCore::Application::~Application()
 {
-	RELEASE(this->rootObject);
+	DELL(this->rootObject);
 }
 
 
-void C::Application::Initialize()
+void DolphinCore::Application::Tick()
 {
+	this->rootObject->Tick();
 }
 
 
-void C::Application::Tick()
-{
-}
-
-
-void C::Application::Release()
-{
-}
+void DolphinCore::Application::Quit() { this->quit = true; }
+bool DolphinCore::Application::IsQuit() { return this->quit; }

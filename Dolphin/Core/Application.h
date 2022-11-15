@@ -7,8 +7,10 @@
  *********************************************************************/
 
 #pragma once
-#include "Core.h"
+#include "DolphinMacro.h"
+#include "DolphinStd.h"
 #include "Object.h"
+
 
 namespace Dolphin
 {
@@ -20,7 +22,8 @@ namespace Dolphin
 		class Application
 		{
 		private:
-			Object* rootObject; ///< root オブジェクトへのポインタ.
+			Object* rootObject;	///< root オブジェクトへのポインタ.
+			bool	quit;		///< アプリケーションの終了判定.
 
 
 		public:
@@ -37,21 +40,22 @@ namespace Dolphin
 
 
 			/**
-			* @brief 初期化処理.
-			*/
-			void Initialize();
-
-
-			/**
 			* @brief フレーム更新処理.
 			*/
 			void Tick();
 
 
 			/**
-			* @brief 終了処理.
+			* @brief アプリケーションを終了させる.
 			*/
-			void Release();
+			void Quit();
+
+
+			/**
+			* @brief アプリケーションの終了状態を取得する.
+			* @return アプリケーションが終了しているなら true.
+			*/
+			bool IsQuit();
 		};
 	}
 }

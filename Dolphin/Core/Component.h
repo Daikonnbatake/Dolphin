@@ -7,43 +7,32 @@
  *********************************************************************/
 
 #pragma once
-#include "Core.h"
+#include "DolphinMacro.h"
+#include "DolphinStd.h"
 
 
 namespace Dolphin
 {
 	namespace Core
 	{
-		class Object; // 相互インクルード用プロトタイプ宣言
+		// 相互インクルード用プロトタイプ宣言
+		class Object;
 
 		/**
 		* @brief コンポーネントのベース.
 		*/
 		class Component
 		{
-		private:
-			Object* parent; ///< 親オブジェクトへのポインタ.
-
-
-			/**
-			* @brief
-			* コンストラクタ.\n
-			* Object クラスからのみインスタンス化が可能.
-			* @param[in] parent 親オブジェクトへのポインタ.
-			*/
-			Component(Object* parent);
-
-
-		public:
-
-			/**
-			* @brief
-			* デストラクタ.\n
-			* 継承先で必ずオーバーライドすること！(メモリリークの危険ｱﾘ).
-			*/
-			virtual ~Component(){};
-
 		friend class Object;
+
+		private:
+			Object* object; ///< 親オブジェクトへのポインタ.
+
+
+			Component(Object* parent);
+			virtual void Start(){};
+			virtual void Tick(){};
+			virtual ~Component(){};
 		};
 	}
 }

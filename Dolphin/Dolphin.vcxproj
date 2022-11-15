@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Core; $(ProjectDir)Helper</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -105,7 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Core; $(ProjectDir)Helper</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -129,10 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Dolphin.h" />
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\Component.h" />
-    <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Object.h" />
+    <ClInclude Include="Header\DolphinMacro.h" />
+    <ClInclude Include="Header\DolphinStd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />

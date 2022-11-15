@@ -1,6 +1,6 @@
 ﻿#include "Component.h"
 
-C::Component::Component(Object* parent)
+DolphinCore::Component::Component(Object* object)
 {
-	this->parent = parent;
+	this->object = object;
 }
