@@ -10,8 +10,6 @@ namespace Dolphin
 	{
 		class Object
 		{
-		friend class ObjectBuilder;
-
 		private:
 			string name;
 			bool onStart;
@@ -22,10 +20,10 @@ namespace Dolphin
 			virtual ~Object();
 			void Start();
 
-			static Object* Instantiate(string name);
 
 
 		public:
+			static Object* Instantiate(string name);
 			static void Destroy(Object* target);
 			bool IsActive();
 			void Enable();

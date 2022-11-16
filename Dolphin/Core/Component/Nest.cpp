@@ -21,7 +21,7 @@ DolphinCore::Object* DolphinSC::Nest::MoveTo(DolphinCore::Object* target)
 {
 	Nest* nowParent = this->object->GetComponent<Nest>();
 	Nest* newParent = target->GetComponent<Nest>();
-	FOR(i, nowParent->children.size())
+	FOR(i, (int)nowParent->children.size())
 	{
 		if (nowParent->children[i] == this->object)
 		{
@@ -32,7 +32,7 @@ DolphinCore::Object* DolphinSC::Nest::MoveTo(DolphinCore::Object* target)
 
 	this->parent = target;
 	newParent->children.push_back(this->object);
-	
+
 	return nullptr;
 }
 

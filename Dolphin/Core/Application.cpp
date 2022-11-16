@@ -5,7 +5,7 @@ DolphinCore::Application::Application()
 {
 	using namespace Dolphin::StandardComponent;
 	this->quit = false;
-	this->rootObject = ObjectBuilder::Instantiate("root")
+	this->rootObject = New("root")
 		.AddComponent<Component>()
 		.AddComponent<Component>()
 		.Child(
