@@ -1,12 +1,4 @@
-﻿/*****************************************************************//**
- * @file   Object.h
- * @brief  オブジェクトクラスの定義.
- *
- * @author かがまーる
- * @date   November 2022
- *********************************************************************/
-
-#pragma once
+﻿#pragma once
 #include "DolphinMacro.h"
 #include "DolphinStd.h"
 #include "Component.h"
@@ -18,20 +10,17 @@ namespace Dolphin
 {
 	namespace Core
 	{
-		/**
-		* @brief オブジェクトのベース.
-		*/
 		class Object
 		{
 		private:
-			string				name;		///< このオブジェクトの名前.
-			bool				onStart;	///< まだこのオブジェクトの Tick() が呼ばれていないなら true.
-			bool				isActive;	///< このオブジェクトがアクティブなら true.
-			vector<Component*>*	components;	///< このオブジェクトが持つコンポーネントへのポインタ.
+			string name;
+			bool onStart;
+			bool isActive;
+			vector<Component*>* components;
 
 			Object(string name);
-			void Start();
 			virtual ~Object();
+			void Start();
 
 
 		public:

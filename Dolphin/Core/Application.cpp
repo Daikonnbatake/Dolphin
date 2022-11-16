@@ -4,20 +4,20 @@
 DolphinCore::Application::Application()
 {
 	this->rootObject = NEW("name");
-	this->rootObject = nullptr;
 	this->quit = false;
-}
-
-
-DolphinCore::Application::~Application()
-{
-	DELL(this->rootObject);
 }
 
 
 void DolphinCore::Application::Tick()
 {
 	this->rootObject->Tick();
+	this->Quit();
+}
+
+
+DolphinCore::Application::~Application()
+{
+	DELL(this->rootObject);
 }
 
 

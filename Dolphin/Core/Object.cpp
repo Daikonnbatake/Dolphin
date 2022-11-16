@@ -1,7 +1,6 @@
 ﻿#include "Object.h"
 
 
-// コンストラクタ
 DolphinCore::Object::Object(string name)
 {
 	this->name = name;
@@ -11,7 +10,6 @@ DolphinCore::Object::Object(string name)
 }
 
 
-// 初めて tick が呼ばれたとき
 void DolphinCore::Object::Start()
 {
 	FOREACH(e, *this->components) e->Start();
@@ -19,7 +17,6 @@ void DolphinCore::Object::Start()
 }
 
 
-// tick が呼ばれたとき
 void DolphinCore::Object::Tick()
 {
 	if (!this->isActive) return;
@@ -28,7 +25,6 @@ void DolphinCore::Object::Tick()
 }
 
 
-// デストラクタ
 DolphinCore::Object::~Object()
 {
 	FOREACH(e, *this->components) RELEASE(e);
@@ -40,7 +36,6 @@ bool			DolphinCore::Object::IsActive()	{ return this->isActive; }
 void			DolphinCore::Object::Enable()	{ this->isActive = true; }
 void			DolphinCore::Object::Disable()	{ this->isActive = false; }
 std::string		DolphinCore::Object::Name()		{ return this->name; }
-
 
 
 template DolphinCore::Component* DolphinCore::Object::AddComponent();
