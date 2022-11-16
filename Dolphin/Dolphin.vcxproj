@@ -136,12 +136,14 @@
     <ClInclude Include="Header\DolphinMacro.h" />
     <ClInclude Include="Header\DolphinStd.h" />
     <ClInclude Include="Core\Component\Nest.h" />
+    <ClInclude Include="Core\ObjectBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Component.cpp" />
     <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="Core\Component\Nest.cpp" />
+    <ClCompile Include="Core\ObjectBuilder.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

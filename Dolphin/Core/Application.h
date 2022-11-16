@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "DolphinMacro.h"
 #include "DolphinStd.h"
-#include "Object.h"
+#include "ObjectBuilder.h"
 
 
 namespace Dolphin

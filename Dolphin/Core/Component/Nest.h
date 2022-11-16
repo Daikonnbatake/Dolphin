@@ -4,28 +4,28 @@
 #include "../Component.h"
 #include "../Object.h"
 
+
 namespace Dolphin
 {
 	namespace StandardComponent
 	{
+		class Object;
 		class Nest : public DolphinCore::Component
 		{
 		private:
 			DolphinCore::Object* parent;
 			vector<DolphinCore::Object*> children;
 
-			Nest(DolphinCore::Object* object);
-			~Nest() override;
-
 
 		public:
+			Nest(DolphinCore::Object* object);
+			~Nest() override;
 			int ChildCount();
 			DolphinCore::Object* Parent();
 			DolphinCore::Object* MoveTo(DolphinCore::Object* target);
-			DolphinCore::Object* AddChild(DolphinCore::Object* target);
 			DolphinCore::Object* GetChild(string name);
 
-			void Start() override;
+			void Start() override {};
 		};
 	}
 }

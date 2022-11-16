@@ -32,44 +32,10 @@ DolphinCore::Object::~Object()
 }
 
 
-bool			DolphinCore::Object::IsActive()	{ return this->isActive; }
-void			DolphinCore::Object::Enable()	{ this->isActive = true; }
-void			DolphinCore::Object::Disable()	{ this->isActive = false; }
-std::string		DolphinCore::Object::Name()		{ return this->name; }
-
-
-template DolphinCore::Component* DolphinCore::Object::AddComponent();
-template<class T> T* DolphinCore::Object::AddComponent()
-{
-	Component* component = new T(this);
-	this->components->push_back(component);
-	return component;
-}
-
-
-template DolphinCore::Component* DolphinCore::Object::GetComponent();
-template<class T> T* DolphinCore::Object::GetComponent()
-{
-	FOREACH(e, *this->components)
-	{
-		T* tmp = dynamic_cast<T*>(e);
-		if (tmp != nullptr) return tmp;
-	}
-	return nullptr;
-}
-
-
-template std::vector<DolphinCore::Component*> DolphinCore::Object::GetComponents();
-template<class T> std::vector<T*> DolphinCore::Object::GetComponents()
-{
-	vector<T*> components;
-	FOREACH(e, *this->components)
-	{
-		T* tmp = dynamic_cast<T*>(e);
-		if (tmp != nullptr) components.push_back(tmp);
-	}
-	return components;
-}
+bool				DolphinCore::Object::IsActive()	{ return this->isActive; }
+void				DolphinCore::Object::Enable()	{ this->isActive = true; }
+void				DolphinCore::Object::Disable()	{ this->isActive = false; }
+std::string			DolphinCore::Object::Name()		{ return this->name; }
 
 
 void DolphinCore::Object::PopComponent(Component* target)

@@ -1,8 +1,9 @@
 #include "Nest.h"
 
+
 DolphinSC::Nest::Nest(DolphinCore::Object* object) : Component(object)
 {
-	this->parent = this->object->GetComponent<Nest>()->object;
+	this->parent = nullptr;
 }
 
 
@@ -24,10 +25,23 @@ DolphinCore::Object* DolphinSC::Nest::MoveTo(DolphinCore::Object* target)
 	{
 		if (nowParent->children[i] == this->object)
 		{
+			DELL(nowParent->children[i]);
 			nowParent->children.erase(nowParent->children.begin() + i);
 		}
 	}
 
 	this->parent = target;
 	newParent->children.push_back(this->object);
+	
+	return nullptr;
+}
+
+
+DolphinCore::Object* DolphinSC::Nest::GetChild(string name)
+{
+	FOREACH(e, this->children)
+	{
+		if (e->Name() == name) return e;
+	}
+	return nullptr;
 }

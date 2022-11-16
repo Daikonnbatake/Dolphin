@@ -8,7 +8,6 @@ namespace Dolphin
 	namespace Core
 	{
 		class Object;
-
 		class Component
 		{
 		friend class Object;
