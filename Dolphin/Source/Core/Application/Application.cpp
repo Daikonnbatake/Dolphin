@@ -8,6 +8,7 @@ Dolphin::Core::Application::Application()
 	this->quit = false;
 	this->rootObject = New("root")
 		.AddComponent<Transform2D>()
+		.AddComponent<Window>()
 		.Child(
 			New("ObjectA")
 			.AddComponent<Transform2D>()
@@ -30,7 +31,10 @@ Dolphin::Core::Application::Application()
 void Dolphin::Core::Application::Tick()
 {
 	this->rootObject->Tick();
-	this->Quit();
+	if (this->rootObject->GetComponent<Dolphin::StandardComponent::Window>()->Closed())
+	{
+		this->Quit();
+	}
 }
 
 
