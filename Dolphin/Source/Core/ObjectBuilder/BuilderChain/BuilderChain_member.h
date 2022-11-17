@@ -1,6 +1,6 @@
 #pragma once
-#include "Object.h"
-#include "../Component/Nest.h"
+#include "Core/Object.h"
+#include "StandardComponent/Nest.h"
 #include "BuilderChain_forward.h"
 
 namespace Dolphin

@@ -1,8 +1,8 @@
 #pragma once
 #include "DolphinMacro.h"
 #include "DolphinStd.h"
-#include "Component.h"
-#include "Object.h"
+#include "Core/Component.h"
+#include "Core/Object.h"
 
 
 namespace Dolphin

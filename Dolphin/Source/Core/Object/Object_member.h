@@ -1,6 +1,6 @@
 #pragma once
 #include "DolphinStd.h"
-#include "Component.h"
+#include "Core/Component.h"
 #include "Object_forward.h"
 
 

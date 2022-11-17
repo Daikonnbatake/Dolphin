@@ -1,6 +1,6 @@
 #pragma once
-#include "../Object/Object_forward.h"
 #include "Component_forward.h"
+
 
 namespace Dolphin
 {

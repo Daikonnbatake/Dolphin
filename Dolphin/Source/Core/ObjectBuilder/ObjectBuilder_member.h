@@ -1,6 +1,6 @@
 #pragma once
 #include "DolphinStd.h"
-#include "Object/Object_member.h"
+#include "Core/Object.h"
 #include "ObjectBuilder_forward.h"
 #include "BuilderChain/BuilderChain.h"
 

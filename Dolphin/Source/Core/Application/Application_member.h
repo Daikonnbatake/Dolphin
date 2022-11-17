@@ -1,8 +1,8 @@
 #pragma once
-#include "Object.h"
-#include "Component.h"
-#include "ObjectBuilder.h"
-#include "../Component/Nest.h"
+#include "Core/Object.h"
+#include "Core/Component.h"
+#include "Core/ObjectBuilder.h"
+#include "StandardComponent/Nest.h"
 
 
 namespace Dolphin
