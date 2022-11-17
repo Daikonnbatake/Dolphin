@@ -129,6 +129,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Header\DolphinStruct.h" />
+    <ClInclude Include="Source\Struct\Angle\Angle.h" />
     <ClInclude Include="Header\DolphinCore.h" />
     <ClInclude Include="Header\DolphinStandardComponent.h" />
     <ClInclude Include="Source\StandardComponent\Nest\Nest.h" />
@@ -153,14 +155,19 @@
     <ClInclude Include="Header\DolphinStd.h" />
     <ClInclude Include="Header\Core\ObjectBuilder.h" />
     <ClInclude Include="Source\StandardComponent\Nest\Nest_forward.h" />
+    <ClInclude Include="Source\Struct\Vector2\Vector2.h" />
+    <ClInclude Include="Source\StandardComponent\Transform2D\Transform2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Struct\Angle\Angle.cpp" />
     <ClCompile Include="Source\Core\Application\Application.cpp" />
     <ClCompile Include="Source\Core\Component\Component.cpp" />
     <ClCompile Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain.cpp" />
     <ClCompile Include="Source\Core\Object\Object.cpp" />
     <ClCompile Include="Source\StandardComponent\Nest\Nest.cpp" />
     <ClCompile Include="Source\Core\ObjectBuilder\ObjectBuilder.cpp" />
+    <ClCompile Include="Source\Struct\Vector2\Vector2.cpp" />
+    <ClCompile Include="Source\StandardComponent\Transform2D\Transform2D.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

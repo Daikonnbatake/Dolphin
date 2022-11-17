@@ -1,34 +1,28 @@
 ﻿#include "Application_member.h"
 
+#include "DolphinStandardComponent.h"
 
 Dolphin::Core::Application::Application()
 {
 	using namespace Dolphin::StandardComponent;
 	this->quit = false;
 	this->rootObject = New("root")
-		.AddComponent<Component>()
-		.AddComponent<Component>()
+		.AddComponent<Transform2D>()
 		.Child(
 			New("ObjectA")
-			.AddComponent<Component>()
-			.AddComponent<Component>()
-			.AddComponent<Component>()
+			.AddComponent<Transform2D>()
 			.Child(
 				New("ObjectAA")
-				.AddComponent<Component>()
-				.AddComponent<Component>()
+				.AddComponent<Transform2D>()
 			)
 			.Child(
 				New("ObjectAB")
-				.AddComponent<Component>()
-				.AddComponent<Component>()
+				.AddComponent<Transform2D>()
 			)
 		)
 		.Child(
 			New("ObjectB")
-			.AddComponent<Component>()
-			.AddComponent<Component>()
-			.AddComponent<Component>()
+			.AddComponent<Transform2D>()
 		);
 }
 
