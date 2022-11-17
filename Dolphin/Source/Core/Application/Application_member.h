@@ -2,7 +2,7 @@
 #include "Core/Object.h"
 #include "Core/Component.h"
 #include "Core/ObjectBuilder.h"
-#include "StandardComponent/Nest.h"
+#include "DolphinStandardComponent.h"
 
 
 namespace Dolphin

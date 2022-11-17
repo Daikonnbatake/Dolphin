@@ -1,8 +1,9 @@
 #pragma once
 #include "DolphinStd.h"
 #include "Source/Core/Component/Component_member.h"
-#include "Source/StandardComponent/Nest_forward.h"
+#include "Source/StandardComponent/Nest/Nest_forward.h"
 #include "Object_forward.h"
+#define DELL(object) Dolphin::Core::Object::Destroy(object)
 
 
 namespace Dolphin

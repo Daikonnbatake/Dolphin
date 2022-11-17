@@ -1,6 +1,6 @@
 ﻿#include "Object_member.h"
 #include "DolphinMacro.h"
-#include "StandardComponent/Nest.h"
+#include "Source/StandardComponent/Nest/Nest.h"
 
 
 Dolphin::Core::Object::Object(string name)

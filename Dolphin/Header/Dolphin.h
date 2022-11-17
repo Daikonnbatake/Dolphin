@@ -1,4 +1,5 @@
 #pragma once
-#include "Core/Application.h"
-#include "Core/Component.h"
-#include "Core/Object.h"
+#include "DolphinCore.h"
+#include "DolphinStandardComponent.h"
+#include "DolphinMacro.h"
+#include "DolphinStd.h"

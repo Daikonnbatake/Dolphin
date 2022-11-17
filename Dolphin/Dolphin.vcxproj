@@ -129,7 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Header\StandardComponent\Nest.h" />
+    <ClInclude Include="Header\DolphinCore.h" />
+    <ClInclude Include="Header\DolphinStandardComponent.h" />
+    <ClInclude Include="Source\StandardComponent\Nest\Nest.h" />
     <ClInclude Include="Source\Core\Application\Application_forward.h" />
     <ClInclude Include="Source\Core\Application\Application_member.h" />
     <ClInclude Include="Source\Core\Component\Component_forward.h" />
@@ -150,14 +152,14 @@
     <ClInclude Include="Header\DolphinMacro.h" />
     <ClInclude Include="Header\DolphinStd.h" />
     <ClInclude Include="Header\Core\ObjectBuilder.h" />
-    <ClInclude Include="Source\StandardComponent\Nest_forward.h" />
+    <ClInclude Include="Source\StandardComponent\Nest\Nest_forward.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Application\Application.cpp" />
     <ClCompile Include="Source\Core\Component\Component.cpp" />
     <ClCompile Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain.cpp" />
     <ClCompile Include="Source\Core\Object\Object.cpp" />
-    <ClCompile Include="Source\StandardComponent\Nest.cpp" />
+    <ClCompile Include="Source\StandardComponent\Nest\Nest.cpp" />
     <ClCompile Include="Source\Core\ObjectBuilder\ObjectBuilder.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
