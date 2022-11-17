@@ -1,4 +1,4 @@
-﻿#include "Component.h"
+﻿#include "Component_member.h"
 
 Dolphin::Core::Component::Component(Object* object)
 {

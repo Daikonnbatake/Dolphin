@@ -1,5 +1,7 @@
 ﻿#include "Object_member.h"
 #include "DolphinMacro.h"
+#include "Source/StandardComponent/Nest.h"
+
 
 Dolphin::Core::Object::Object(string name)
 {
@@ -7,6 +9,7 @@ Dolphin::Core::Object::Object(string name)
 	this->onStart = true;
 	this->isActive = true;
 	this->components = new vector<Component*>();
+	this->nest = this->AddComponent<Dolphin::StandardComponent::Nest>();
 }
 
 
@@ -36,6 +39,7 @@ bool				Dolphin::Core::Object::IsActive()	{ return this->isActive; }
 void				Dolphin::Core::Object::Enable()		{ this->isActive = true; }
 void				Dolphin::Core::Object::Disable()	{ this->isActive = false; }
 std::string			Dolphin::Core::Object::Name()		{ return this->name; }
+Dolphin::StandardComponent::Nest* Dolphin::Core::Object::Nest() { return this->nest; }
 
 
 void Dolphin::Core::Object::PopComponent(Component* target)

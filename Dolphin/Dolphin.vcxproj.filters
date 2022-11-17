@@ -81,6 +81,9 @@
     <ClInclude Include="Header\StandardComponent\Nest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\StandardComponent\Nest_forward.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Object\Object.cpp">

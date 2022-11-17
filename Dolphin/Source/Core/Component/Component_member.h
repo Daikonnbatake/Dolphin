@@ -1,5 +1,6 @@
 #pragma once
 #include "Component_forward.h"
+#include "Source/Core/Object/Object_member.h"
 
 
 namespace Dolphin
@@ -9,7 +10,7 @@ namespace Dolphin
 		class Component
 		{
 		friend class Object;
-		
+
 
 		protected:
 			Object* object;

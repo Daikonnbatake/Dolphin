@@ -9,7 +9,7 @@ Dolphin::StandardComponent::Nest::Nest(Dolphin::Core::Object* object) : Componen
 
 Dolphin::StandardComponent::Nest::~Nest()
 {
-	FOREACH(e, this->children) DELL(e);
+	FOREACH(e, this->children) Dolphin::Core::Object::Destroy(e);
 }
 
 
@@ -25,7 +25,7 @@ Dolphin::Core::Object* Dolphin::StandardComponent::Nest::MoveTo(Dolphin::Core::O
 	{
 		if (nowParent->children[i] == this->object)
 		{
-			DELL(nowParent->children[i]);
+			Dolphin::Core::Object::Destroy(nowParent->children[i]);
 			nowParent->children.erase(nowParent->children.begin() + i);
 		}
 	}
