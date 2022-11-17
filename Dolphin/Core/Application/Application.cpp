@@ -1,7 +1,7 @@
-﻿#include "Application.h"
+﻿#include "Application_member.h"
 
 
-DolphinCore::Application::Application()
+Dolphin::Core::Application::Application()
 {
 	using namespace Dolphin::StandardComponent;
 	this->quit = false;
@@ -33,18 +33,18 @@ DolphinCore::Application::Application()
 }
 
 
-void DolphinCore::Application::Tick()
+void Dolphin::Core::Application::Tick()
 {
 	this->rootObject->Tick();
 	this->Quit();
 }
 
 
-DolphinCore::Application::~Application()
+Dolphin::Core::Application::~Application()
 {
 	DELL(this->rootObject);
 }
 
 
-void DolphinCore::Application::Quit() { this->quit = true; }
-bool DolphinCore::Application::IsQuit() { return this->quit; }
+void Dolphin::Core::Application::Quit() { this->quit = true; }
+bool Dolphin::Core::Application::IsQuit() { return this->quit; }

@@ -1,23 +1,23 @@
 #include "Nest.h"
 
 
-DolphinSC::Nest::Nest(DolphinCore::Object* object) : Component(object)
+Dolphin::StandardComponent::Nest::Nest(Dolphin::Core::Object* object) : Component(object)
 {
 	this->parent = nullptr;
 }
 
 
-DolphinSC::Nest::~Nest()
+Dolphin::StandardComponent::Nest::~Nest()
 {
 	FOREACH(e, this->children) DELL(e);
 }
 
 
-DolphinCore::Object* DolphinSC::Nest::Parent() { return this->parent; }
-int DolphinSC::Nest::ChildCount() { return (int)this->children.size(); }
+Dolphin::Core::Object* Dolphin::StandardComponent::Nest::Parent() { return this->parent; }
+int Dolphin::StandardComponent::Nest::ChildCount() { return (int)this->children.size(); }
 
 
-DolphinCore::Object* DolphinSC::Nest::MoveTo(DolphinCore::Object* target)
+Dolphin::Core::Object* Dolphin::StandardComponent::Nest::MoveTo(Dolphin::Core::Object* target)
 {
 	Nest* nowParent = this->object->GetComponent<Nest>();
 	Nest* newParent = target->GetComponent<Nest>();
@@ -37,7 +37,7 @@ DolphinCore::Object* DolphinSC::Nest::MoveTo(DolphinCore::Object* target)
 }
 
 
-DolphinCore::Object* DolphinSC::Nest::GetChild(string name)
+Dolphin::Core::Object* Dolphin::StandardComponent::Nest::GetChild(string name)
 {
 	FOREACH(e, this->children)
 	{

@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Header</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Core; $(ProjectDir)Header</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -129,21 +129,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Application\Application_forward.h" />
+    <ClInclude Include="Core\Application\Application_member.h" />
+    <ClInclude Include="Core\Component\Component_forward.h" />
+    <ClInclude Include="Core\Component\Component_member.h" />
+    <ClInclude Include="Core\ObjectBuilder\BuilderChain\BuilderChain.h" />
+    <ClInclude Include="Core\ObjectBuilder\BuilderChain\BuilderChain_forward.h" />
+    <ClInclude Include="Core\ObjectBuilder\BuilderChain\BuilderChain_inline.h" />
+    <ClInclude Include="Core\ObjectBuilder\BuilderChain\BuilderChain_member.h" />
+    <ClInclude Include="Core\ObjectBuilder\ObjectBuilder_forward.h" />
+    <ClInclude Include="Core\ObjectBuilder\ObjectBuilder_member.h" />
+    <ClInclude Include="Core\Object\Object_forward.h" />
+    <ClInclude Include="Core\Object\Object_inline.h" />
+    <ClInclude Include="Core\Object\Object_member.h" />
     <ClInclude Include="Header\Dolphin.h" />
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\Component.h" />
     <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Header\DolphinMacro.h" />
     <ClInclude Include="Header\DolphinStd.h" />
-    <ClInclude Include="Core\Component\Nest.h" />
+    <ClInclude Include="Component\Nest.h" />
     <ClInclude Include="Core\ObjectBuilder.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Application.cpp" />
-    <ClCompile Include="Core\Component.cpp" />
-    <ClCompile Include="Core\Object.cpp" />
-    <ClCompile Include="Core\Component\Nest.cpp" />
-    <ClCompile Include="Core\ObjectBuilder.cpp" />
+    <ClCompile Include="Core\Application\Application.cpp" />
+    <ClCompile Include="Core\Component\Component.cpp" />
+    <ClCompile Include="Core\ObjectBuilder\BuilderChain\BuilderChain.cpp" />
+    <ClCompile Include="Core\Object\Object.cpp" />
+    <ClCompile Include="Component\Nest.cpp" />
+    <ClCompile Include="Core\ObjectBuilder\ObjectBuilder.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
