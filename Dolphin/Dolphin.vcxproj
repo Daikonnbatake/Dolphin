@@ -149,7 +149,6 @@
     <ClInclude Include="Header\Core\Object.h" />
     <ClInclude Include="Header\DolphinMacro.h" />
     <ClInclude Include="Header\DolphinStd.h" />
-    <ClInclude Include="Source\StandardComponent\Nest.h" />
     <ClInclude Include="Header\Core\ObjectBuilder.h" />
     <ClInclude Include="Source\StandardComponent\Nest_forward.h" />
   </ItemGroup>

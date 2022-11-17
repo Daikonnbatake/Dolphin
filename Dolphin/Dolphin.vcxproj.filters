@@ -33,9 +33,6 @@
     <ClInclude Include="Header\Dolphin.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Nest.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Core\ObjectBuilder.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
