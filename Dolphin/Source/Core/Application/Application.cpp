@@ -1,34 +1,34 @@
 ﻿#include "Application_member.h"
 
+#include "DolphinStandardComponent.h"
 
 Dolphin::Core::Application::Application()
 {
 	using namespace Dolphin::StandardComponent;
 	this->quit = false;
+
 	this->rootObject = New("root")
-		.AddComponent<Component>()
-		.AddComponent<Component>()
+		.AddComponent<Transform2D>()
+		.AddComponent<Window>()
 		.Child(
 			New("ObjectA")
-			.AddComponent<Component>()
-			.AddComponent<Component>()
-			.AddComponent<Component>()
+			.AddComponent<Transform2D>()
+			.AddComponent<Window>()
 			.Child(
 				New("ObjectAA")
-				.AddComponent<Component>()
-				.AddComponent<Component>()
+				.AddComponent<Transform2D>()
+				.AddComponent<Window>()
 			)
 			.Child(
 				New("ObjectAB")
-				.AddComponent<Component>()
-				.AddComponent<Component>()
+				.AddComponent<Transform2D>()
+				.AddComponent<Window>()
+				.Child(
+					New("ObjectABA")
+					.AddComponent<Transform2D>()
+					.AddComponent<Window>()
+				)
 			)
-		)
-		.Child(
-			New("ObjectB")
-			.AddComponent<Component>()
-			.AddComponent<Component>()
-			.AddComponent<Component>()
 		);
 }
 
@@ -36,7 +36,11 @@ Dolphin::Core::Application::Application()
 void Dolphin::Core::Application::Tick()
 {
 	this->rootObject->Tick();
-	this->Quit();
+	auto window = this->rootObject->GetComponent<Dolphin::StandardComponent::Window>();
+	if (window->Closed())
+	{
+		this->Quit();
+	}
 }
 
 

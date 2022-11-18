@@ -45,3 +45,9 @@ Dolphin::Core::Object* Dolphin::StandardComponent::Nest::GetChild(string name)
 	}
 	return nullptr;
 }
+
+
+void Dolphin::StandardComponent::Nest::Tick()
+{
+	FOREACH(e, this->children) e->Tick();
+}
