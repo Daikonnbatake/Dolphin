@@ -22,11 +22,13 @@ Dolphin::Core::Application::Application()
 			.Child(
 				New("ObjectAB")
 				.AddComponent<Transform2D>()
+				.AddComponent<Window>()
+				.Child(
+					New("ObjectABA")
+					.AddComponent<Transform2D>()
+					.AddComponent<Window>()
+				)
 			)
-		)
-		.Child(
-			New("ObjectB")
-			.AddComponent<Transform2D>()
 		);
 }
 

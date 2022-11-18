@@ -12,6 +12,7 @@ namespace Dolphin
 		class Window : public Dolphin::Core::Component
 		{
 		private:
+			HWND parentHandle;
 			bool closed;
 			long windowStyle;
 			HWND windowHandle;
@@ -26,6 +27,7 @@ namespace Dolphin
 
 			void Start() override;
 			void Quit();
+			HWND WindowHandle();
 			void GenerateWindowClass(WNDCLASS& target);
 			LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wordParam, LPARAM longParam);
 			static LRESULT CALLBACK StaticWindowProc(HWND windowHandle, UINT message, WPARAM wordParam, LPARAM longParam);

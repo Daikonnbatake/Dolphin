@@ -15,6 +15,7 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object) : Comp
 
 bool Dolphin::StandardComponent::Window::Closed() { return this->closed; }
 void Dolphin::StandardComponent::Window::Quit() { this->closed = true; }
+HWND Dolphin::StandardComponent::Window::WindowHandle() { return this->windowHandle; }
 void Dolphin::StandardComponent::Window::Title(string title) { this->windowName = title; }
 void Dolphin::StandardComponent::Window::Style(long windowStyle) { this->windowStyle = windowStyle; }
 std::string Dolphin::StandardComponent::Window::Title() { return this->windowName; }
@@ -77,13 +78,21 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::StaticWindowProc(HWND windo
 
 void Dolphin::StandardComponent::Window::Start()
 {
+	// 親オブジェクトに window コンポーネントがある場合, それの子としてウィンドウを生成する.
+	if (this->object->Nest()->Parent() != nullptr)
+	{
+		this->parentHandle = this->object->Nest()->Parent()->GetComponent<Window>()->WindowHandle();
+	}
+	else this->parentHandle = nullptr;
+
+
 	this->windowHandle = CreateWindow(
 		this->className.c_str(),
 		this->windowName.c_str(),
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		480, 320,
-		NULL,
+		((this->parentHandle != nullptr) ? this->parentHandle : NULL),
 		NULL,
 		this->instanceHandle,
 		this
