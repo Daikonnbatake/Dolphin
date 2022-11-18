@@ -14,6 +14,7 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object) : Comp
 
 
 bool Dolphin::StandardComponent::Window::Closed() { return this->closed; }
+void Dolphin::StandardComponent::Window::Quit() { this->closed = true; }
 void Dolphin::StandardComponent::Window::Title(string title) { this->windowName = title; }
 void Dolphin::StandardComponent::Window::Style(long windowStyle) { this->windowStyle = windowStyle; }
 std::string Dolphin::StandardComponent::Window::Title() { return this->windowName; }
@@ -23,7 +24,7 @@ Dolphin::Struct::Vector2& Dolphin::StandardComponent::Window::Size() { return th
 
 void Dolphin::StandardComponent::Window::GenerateWindowClass(WNDCLASS& target)
 {
-	target.lpfnWndProc = Window::StaticWindowProc;
+	target.lpfnWndProc = StaticWindowProc;
 	target.hInstance = instanceHandle;
 	target.style = CS_HREDRAW | CS_VREDRAW;
 	target.cbClsExtra = 0;
@@ -42,10 +43,13 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::WindowProcedure(HWND window
 	{
 		case WM_DESTROY:
 		{
+			this->closed = true;
 			PostQuitMessage(0);
 			break;
 		}
 	}
+
+	//this->thirdWindowProcedure(windowHandle, message, wordParam, longParam);
 	return DefWindowProc(windowHandle, message, wordParam, longParam);
 }
 
@@ -54,18 +58,19 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::StaticWindowProc(HWND windo
 {
 	Window* This = (Window*)GetWindowLongPtr(windowHandle, GWLP_USERDATA);
 
-	if (This) return This->WindowProcedure(windowHandle, message, wordParam, longParam);
-
-	if (message != WM_CREATE)
+	if (!This)
 	{
-		This = (Window*)((LPCREATESTRUCT)longParam)->lpCreateParams;
-		if (This)
+		if (message == WM_CREATE)
 		{
-			SetWindowLongPtr(windowHandle, GWLP_USERDATA, (LONG_PTR)This);
-			return This->WindowProcedure(windowHandle, message, wordParam, longParam);
+			This = (Window*)((LPCREATESTRUCT)longParam)->lpCreateParams;
+			if (This)
+			{
+				SetWindowLongPtr(windowHandle, GWLP_USERDATA, (LONG_PTR)This);
+				return This->WindowProcedure(windowHandle, message, wordParam, longParam);
+			}
 		}
 	}
-
+	else return This->WindowProcedure(windowHandle, message, wordParam, longParam);
 	return DefWindowProc(windowHandle, message, wordParam, longParam);
 }
 
@@ -93,12 +98,12 @@ void Dolphin::StandardComponent::Window::Tick()
 	MSG message = { 0 };
 	if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 	{
-		if (message.message == WM_QUIT) this->closed = true;
 		TranslateMessage(&message);
 		DispatchMessage(&message);
 	}
 	else
 	{
 		// ƒQ[ƒ€‚Ìˆ—
+
 	}
 }

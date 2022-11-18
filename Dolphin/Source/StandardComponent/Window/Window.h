@@ -23,7 +23,9 @@ namespace Dolphin
 			Dolphin::Struct::Vector2 size;
 			function<LRESULT(HWND, UINT, WPARAM, LPARAM)> thirdWindowProcedure;
 
+
 			void Start() override;
+			void Quit();
 			void GenerateWindowClass(WNDCLASS& target);
 			LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wordParam, LPARAM longParam);
 			static LRESULT CALLBACK StaticWindowProc(HWND windowHandle, UINT message, WPARAM wordParam, LPARAM longParam);

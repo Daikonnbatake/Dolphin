@@ -6,15 +6,18 @@ Dolphin::Core::Application::Application()
 {
 	using namespace Dolphin::StandardComponent;
 	this->quit = false;
+
 	this->rootObject = New("root")
 		.AddComponent<Transform2D>()
 		.AddComponent<Window>()
 		.Child(
 			New("ObjectA")
 			.AddComponent<Transform2D>()
+			.AddComponent<Window>()
 			.Child(
 				New("ObjectAA")
 				.AddComponent<Transform2D>()
+				.AddComponent<Window>()
 			)
 			.Child(
 				New("ObjectAB")
@@ -31,7 +34,8 @@ Dolphin::Core::Application::Application()
 void Dolphin::Core::Application::Tick()
 {
 	this->rootObject->Tick();
-	if (this->rootObject->GetComponent<Dolphin::StandardComponent::Window>()->Closed())
+	auto window = this->rootObject->GetComponent<Dolphin::StandardComponent::Window>();
+	if (window->Closed())
 	{
 		this->Quit();
 	}

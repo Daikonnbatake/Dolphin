@@ -19,6 +19,7 @@ namespace Dolphin
 		public:
 			Nest(Dolphin::Core::Object* object);
 			~Nest() override;
+			void Tick() override;
 			int ChildCount();
 			Dolphin::Core::Object* Parent();
 			Dolphin::Core::Object* MoveTo(Dolphin::Core::Object* target);
