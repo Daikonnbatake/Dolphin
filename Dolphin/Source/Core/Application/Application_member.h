@@ -1,8 +1,6 @@
 #pragma once
 #include "Core/Object.h"
 #include "Core/Component.h"
-#include "Core/ObjectBuilder.h"
-#include "DolphinStandardComponent.h"
 
 
 namespace Dolphin

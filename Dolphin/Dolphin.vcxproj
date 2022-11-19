@@ -135,6 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.h" />
+    <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer_inline.h" />
     <ClInclude Include="Source\Struct\DolphinEvent\DolphinEvent.h" />
     <ClInclude Include="Header\DolphinStruct.h" />
     <ClInclude Include="Source\Struct\Angle\Angle.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Source\StandardComponent\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.cpp" />
     <ClCompile Include="Source\Struct\DolphinEvent\DolphinEvent.cpp" />
     <ClCompile Include="Source\Struct\Angle\Angle.cpp" />
     <ClCompile Include="Source\Core\Application\Application.cpp" />

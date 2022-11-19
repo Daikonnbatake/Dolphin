@@ -7,6 +7,7 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object) : Comp
 	this->className = this->object->Name();
 	this->windowName = "‚¢‚é‚©ƒGƒ“ƒWƒ“ - " + this->className;
 	this->instanceHandle = ((HINSTANCE)GetModuleHandle(0));
+	this->thirdWindowProcedure = nullptr;
 	this->windowClass = { 0 };
 	this->GenerateWindowClass(this->windowClass);
 	RegisterClass(&(this->windowClass));
@@ -21,6 +22,7 @@ void Dolphin::StandardComponent::Window::Style(long windowStyle) { this->windowS
 std::string Dolphin::StandardComponent::Window::Title() { return this->windowName; }
 Dolphin::Struct::Vector2& Dolphin::StandardComponent::Window::Position() { return this->position; }
 Dolphin::Struct::Vector2& Dolphin::StandardComponent::Window::Size() { return this->size; }
+void Dolphin::StandardComponent::Window::ThirdWindowProcedure(function<LRESULT(HWND, UINT, WPARAM, LPARAM)> windowProc) { this->thirdWindowProcedure = windowProc; }
 
 
 void Dolphin::StandardComponent::Window::GenerateWindowClass(WNDCLASS& target)
@@ -50,7 +52,11 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::WindowProcedure(HWND window
 		}
 	}
 
-	//this->thirdWindowProcedure(windowHandle, message, wordParam, longParam);
+	if (this->thirdWindowProcedure != nullptr)
+	{
+		this->thirdWindowProcedure(windowHandle, message, wordParam, longParam);
+	}
+
 	return DefWindowProc(windowHandle, message, wordParam, longParam);
 }
 
