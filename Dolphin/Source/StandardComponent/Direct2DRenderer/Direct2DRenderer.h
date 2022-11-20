@@ -22,7 +22,6 @@ namespace Dolphin
 			function<void(void)> rendering;
 
 			void Start() override;
-			LRESULT WindowProcedure(HWND windowHandle, UINT message, WPARAM wordParam, LPARAM longParam);
 
 		public:
 			Direct2DRenderer(Dolphin::Core::Object* object);

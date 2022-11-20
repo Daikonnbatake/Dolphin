@@ -9,7 +9,7 @@ Dolphin::Core::Application::Application()
 	this->init = false;
 
 	// デバッグ用画像表示やつ初期化
-	this->filename = L"G:\\image.png";
+	this->filename = L"G:\\image.bmp";
 	this->factory = nullptr;
 	this->decoder = nullptr;
 	this->frame = nullptr;
@@ -69,22 +69,19 @@ void Dolphin::Core::Application::Start()
 	if (FAILED(result)) return;
 
 
-	result = this->factory->CreateDecoderFromFilename(
+	this->factory->CreateDecoderFromFilename(
 		this->filename,
 		nullptr,
 		GENERIC_READ,
 		WICDecodeMetadataCacheOnLoad,
 		&this->decoder
 	);
-	if (FAILED(result)) return;
 
-	result = this->decoder->GetFrame(0, &this->frame);
-	if (FAILED(result)) return;
+	this->decoder->GetFrame(0, &this->frame);
 
-	result = this->factory->CreateFormatConverter(&this->formatConverter);
-	if (FAILED(result)) return;
+	this->factory->CreateFormatConverter(&this->formatConverter);
 
-	result = this->formatConverter->Initialize(
+	this->formatConverter->Initialize(
 		this->frame,
 		GUID_WICPixelFormat32bppPBGRA,
 		WICBitmapDitherTypeNone,
@@ -92,14 +89,12 @@ void Dolphin::Core::Application::Start()
 		1.0f,
 		WICBitmapPaletteTypeMedianCut
 	);
-	if (FAILED(result)) return;
 
-	result = d2d->Rendertarget()->CreateBitmapFromWicBitmap(
+	d2d->Rendertarget()->CreateBitmapFromWicBitmap(
 		this->formatConverter,
 		nullptr,
 		&this->bitmap
 	);
-	if (FAILED(result)) return;
 }
 
 
@@ -120,7 +115,10 @@ void Dolphin::Core::Application::Tick()
 	ID2D1HwndRenderTarget* renderTarget = d2d->Rendertarget();
 	RECT rect;
 	GetClientRect(window->WindowHandle(), &rect);
-
+	D2D1_SIZE_U size = D2D1::SizeU(rect.right, rect.bottom);
+	renderTarget->Resize(size);
+	float dpi = GetDpiForWindow(window->WindowHandle());
+	float dpiScaling = dpi / 96.0f;
 	renderTarget->BeginDraw();
 
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
@@ -128,7 +126,12 @@ void Dolphin::Core::Application::Tick()
 
 	renderTarget->DrawBitmap(
 		this->bitmap,
-		D2D1::RectF(rect.left, rect.top, rect.right, rect.bottom),
+		D2D1::RectF(
+			rect.left * dpiScaling,
+			rect.top * dpiScaling,
+			rect.right * dpiScaling,
+			rect.bottom * dpiScaling
+		),
 		1.0f,
 		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
 		nullptr
