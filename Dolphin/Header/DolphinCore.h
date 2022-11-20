@@ -1,9 +1,5 @@
 #pragma once
 
-// Application
-#include "Source/Core/Application/Application_forward.h"
-#include "Source/Core/Application/Application_member.h"
-
 // Component
 #include "Source/Core/Component/Component_forward.h"
 #include "Source/Core/Component/Component_member.h"

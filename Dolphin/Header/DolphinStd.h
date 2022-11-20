@@ -6,8 +6,8 @@
 
 namespace Dolphin
 {
-	using std::string;
 	using std::vector;
 	using std::function;
 	using std::unordered_set;
+	using string = std::wstring;
 }

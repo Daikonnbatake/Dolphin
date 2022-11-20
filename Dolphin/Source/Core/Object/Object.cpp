@@ -38,7 +38,7 @@ Dolphin::Core::Object::~Object()
 bool				Dolphin::Core::Object::IsActive()	{ return this->isActive; }
 void				Dolphin::Core::Object::Enable()		{ this->isActive = true; }
 void				Dolphin::Core::Object::Disable()	{ this->isActive = false; }
-std::string			Dolphin::Core::Object::Name()		{ return this->name; }
+std::wstring		Dolphin::Core::Object::Name()		{ return this->name; }
 Dolphin::StandardComponent::Nest* Dolphin::Core::Object::Nest() { return this->nest; }
 
 
