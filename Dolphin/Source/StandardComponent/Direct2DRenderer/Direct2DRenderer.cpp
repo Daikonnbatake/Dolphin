@@ -7,6 +7,7 @@ Dolphin::StandardComponent::Direct2DRenderer::Direct2DRenderer(Dolphin::Core::Ob
 	this->windowHandle = nullptr;
 	this->direct2DFactory = nullptr;
 	this->renderTarget = nullptr;
+	this->rendering = nullptr;
 }
 
 
@@ -50,11 +51,12 @@ LRESULT Dolphin::StandardComponent::Direct2DRenderer::WindowProcedure(HWND windo
 	{
 		case WM_PAINT:
 		{
-			this->renderTarget->BeginDraw();
-			this->renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
-			this->renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Blue));
-			this->renderTarget->EndDraw();
+			if (this->rendering != nullptr) this->rendering();
 		}
 	}
 	return LRESULT();
 }
+
+
+void Dolphin::StandardComponent::Direct2DRenderer::RenderingProcess(function<void(void)> renderingProcess) { this->rendering = std::bind(&Direct2DRenderer::rendering, this); }
+ID2D1HwndRenderTarget* Dolphin::StandardComponent::Direct2DRenderer::Rendertarget() { return this->renderTarget; }

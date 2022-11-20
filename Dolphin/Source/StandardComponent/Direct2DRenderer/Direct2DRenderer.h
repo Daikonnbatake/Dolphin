@@ -19,7 +19,7 @@ namespace Dolphin
 			HWND windowHandle;
 			ID2D1Factory* direct2DFactory;
 			ID2D1HwndRenderTarget* renderTarget;
-			function<void(void)> OnRendering;
+			function<void(void)> rendering;
 
 			void Start() override;
 			LRESULT WindowProcedure(HWND windowHandle, UINT message, WPARAM wordParam, LPARAM longParam);
@@ -27,6 +27,8 @@ namespace Dolphin
 		public:
 			Direct2DRenderer(Dolphin::Core::Object* object);
 			~Direct2DRenderer();
+			ID2D1HwndRenderTarget* Rendertarget();
+			void RenderingProcess(function<void(void)> renderingProcess);
 			template<class Interface> void SafeRelease(Interface **target);
 		};
 	}
