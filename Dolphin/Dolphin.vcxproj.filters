@@ -51,10 +51,7 @@
     <ClInclude Include="Source\Core\Component\Component_member.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\Application\Application_forward.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Application\Application_member.h">
+    <ClInclude Include="Application\Application.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\ObjectBuilder\ObjectBuilder_forward.h">
@@ -116,13 +113,13 @@
     <ClCompile Include="Source\Core\Object\Object.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="WinMain.cpp">
+    <ClCompile Include="Application\WinMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Component\Component.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\Application\Application.cpp">
+    <ClCompile Include="Application\Application.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\StandardComponent\Nest\Nest.cpp">

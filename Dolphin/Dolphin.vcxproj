@@ -143,8 +143,7 @@
     <ClInclude Include="Header\DolphinCore.h" />
     <ClInclude Include="Header\DolphinStandardComponent.h" />
     <ClInclude Include="Source\StandardComponent\Nest\Nest.h" />
-    <ClInclude Include="Source\Core\Application\Application_forward.h" />
-    <ClInclude Include="Source\Core\Application\Application_member.h" />
+    <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Source\Core\Component\Component_forward.h" />
     <ClInclude Include="Source\Core\Component\Component_member.h" />
     <ClInclude Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain.h" />
@@ -172,7 +171,7 @@
     <ClCompile Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.cpp" />
     <ClCompile Include="Source\Struct\DolphinEvent\DolphinEvent.cpp" />
     <ClCompile Include="Source\Struct\Angle\Angle.cpp" />
-    <ClCompile Include="Source\Core\Application\Application.cpp" />
+    <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Source\Core\Component\Component.cpp" />
     <ClCompile Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain.cpp" />
     <ClCompile Include="Source\Core\Object\Object.cpp" />
@@ -181,7 +180,7 @@
     <ClCompile Include="Source\Struct\Vector2\Vector2.cpp" />
     <ClCompile Include="Source\StandardComponent\Transform2D\Transform2D.cpp" />
     <ClCompile Include="Source\StandardComponent\Window\Window.cpp" />
-    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Application\WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
