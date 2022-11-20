@@ -64,7 +64,7 @@ namespace Dolphin
 		using namespace Dolphin::StandardComponent;
 
 		// デバッグ用画像表示やつ初期化
-		filename = L"G:\\image.bmp";
+		filename = L"../Dolphin/Application/Resource/dummy.png";
 		factory = nullptr;
 		decoder = nullptr;
 		frame = nullptr;

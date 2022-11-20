@@ -182,6 +182,9 @@
     <ClCompile Include="Source\StandardComponent\Window\Window.cpp" />
     <ClCompile Include="Application\WinMain.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Application\Resource\dummy.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
