@@ -5,24 +5,24 @@
 
 namespace Dolphin
 {
-	namespace Core
-	{
-		class Component
-		{
-		friend class Object;
+    namespace Core
+    {
+        class Component
+        {
+            friend class Object;
 
 
-		protected:
-			Object* object;
+          protected:
+            Object* object;
 
-			Component(Object* object);
-			virtual ~Component() {};
-			virtual void Start() {};
-			virtual void Tick() {};
+            Component(Object* object);
+            virtual ~Component() {};
+            virtual void Start() {};
+            virtual void Tick() {};
 
 
-		public:
-			Object* ThisObject();
-		};
-	}
+          public:
+            Object* ThisObject();
+        };
+    }
 }

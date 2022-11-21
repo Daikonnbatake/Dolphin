@@ -4,10 +4,12 @@
 #include "Source/Core/Object/Object_member.h"
 
 
-template<class T> inline Dolphin::BuilderChain& Dolphin::BuilderChain::AddComponent()
+template<class T>
+inline Dolphin::BuilderChain& Dolphin::BuilderChain::AddComponent()
 {
-	this->object->AddComponent<T>();
-	return *this;
+    this->object->AddComponent<T>();
+    return *this;
 };
 
-template Dolphin::BuilderChain& Dolphin::BuilderChain::AddComponent<Dolphin::Core::Component>();
+template Dolphin::BuilderChain&
+Dolphin::BuilderChain::AddComponent<Dolphin::Core::Component>();

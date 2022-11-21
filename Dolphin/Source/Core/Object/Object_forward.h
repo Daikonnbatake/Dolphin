@@ -3,8 +3,8 @@
 
 namespace Dolphin
 {
-	namespace Core
-	{
-		class Object;
-	}
+    namespace Core
+    {
+        class Object;
+    }
 }

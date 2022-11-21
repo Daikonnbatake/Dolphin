@@ -1,13 +1,13 @@
 #pragma once
-#include <vector>
-#include <unordered_set>
-#include <string>
 #include <functional>
+#include <string>
+#include <unordered_set>
+#include <vector>
 
 namespace Dolphin
 {
-	using std::vector;
-	using std::function;
-	using std::unordered_set;
-	using string = std::wstring;
+    using std::function;
+    using std::unordered_set;
+    using std::vector;
+    using string = std::wstring;
 }
