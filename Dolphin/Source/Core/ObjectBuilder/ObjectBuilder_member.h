@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "BuilderChain/BuilderChain.h"
 #include "DolphinStd.h"
 #include "ObjectBuilder_forward.h"

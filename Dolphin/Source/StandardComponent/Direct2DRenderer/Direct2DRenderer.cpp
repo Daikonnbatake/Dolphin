@@ -1,4 +1,4 @@
-﻿#include "Direct2DRenderer.h"
+#include "Direct2DRenderer.h"
 
 #include "Direct2DRenderer_inline.h"
 

@@ -1,4 +1,4 @@
-﻿#include "Window.h"
+#include "Window.h"
 
 
 Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #pragma comment(lib, "d2d1")
 #include "DolphinCore.h"
 #include "DolphinStd.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "BuilderChain_forward.h"
 #include "Source/Core/Object/Object_forward.h"
 #include "Source/StandardComponent/Nest/Nest.h"

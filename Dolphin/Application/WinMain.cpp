@@ -1,4 +1,5 @@
-﻿#pragma comment(lib, "d2d1")
+#pragma comment(lib, "d2d1")
+
 #pragma comment(lib, "windowscodecs.lib")
 #include "Application.h"
 #include "Dolphin.h"
@@ -62,7 +63,6 @@ namespace Dolphin
      *************************************************************************/
     void Start(Application& app)
     {
-
         // デバッグ用画像表示やつ初期化
         filename        = L"../Dolphin/Application/Resource/dummy.png";
         factory         = nullptr;
@@ -138,7 +138,7 @@ namespace Dolphin
         {
             MessageBox(NULL, L"R キーが押されました", L"Debug", MB_OK);
         }
-
+        
         if (rootWindow->Closed())
             app.Quit();
     }
