@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // Direct2DRenderer
 #include "Source/StandardComponent/Direct2DRenderer/Direct2DRenderer.h"

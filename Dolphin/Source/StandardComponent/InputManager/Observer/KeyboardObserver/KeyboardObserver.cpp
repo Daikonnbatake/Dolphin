@@ -1,4 +1,4 @@
-#include "KeyboardObserver.h"
+﻿#include "KeyboardObserver.h"
 #include "DolphinMacro.h"
 
 Dolphin::StandardComponent::Input::KeyboardObserver*

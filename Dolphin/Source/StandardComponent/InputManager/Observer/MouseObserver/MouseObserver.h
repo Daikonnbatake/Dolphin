@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../ButtonStatus/ButtonStatus.h"
 #include "../ButtonStatus/IButtonReader.h"
 #include "../CursorState/CursorState.h"

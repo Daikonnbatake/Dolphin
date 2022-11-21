@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Direct2DRenderer.h"
 
 

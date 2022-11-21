@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Component_forward.h"
 #include "Source/Core/Object/Object_member.h"
 

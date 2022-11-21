@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "BuilderChain_forward.h"
 #include "BuilderChain_member.h"
 #include "Source/Core/Object/Object_member.h"

@@ -1,8 +1,8 @@
-#include "ButtonStatus.h"
+ï»¿#include "ButtonStatus.h"
 
 void Dolphin::StandardComponent::Input::ButtonStatus::Tick()
 {
-    // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+    // ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ã
     if (this->isPush)
     {
         this->isIdle = false;
@@ -11,7 +11,7 @@ void Dolphin::StandardComponent::Input::ButtonStatus::Tick()
         this->isPull = false;
     }
 
-    // ƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½‚Æ‚«
+    // ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸã¨ã
     if (this->isPull)
     {
         this->isIdle = true;
