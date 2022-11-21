@@ -1,4 +1,4 @@
-﻿#pragma comment(lib, "d2d1")
+#pragma comment(lib, "d2d1")
 #pragma comment(lib, "windowscodecs.lib")
 #include "Application.h"
 #include "Dolphin.h"

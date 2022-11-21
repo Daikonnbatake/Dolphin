@@ -1,4 +1,4 @@
-﻿#include "Application.h"
+#include "Application.h"
 
 #include "Core/ObjectBuilder.h"
 #include "DolphinStandardComponent.h"

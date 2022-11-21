@@ -23,7 +23,7 @@ Dolphin::StandardComponent::Direct2DRenderer::~Direct2DRenderer()
 
 void Dolphin::StandardComponent::Direct2DRenderer::Start()
 {
-    // ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ðì¬
+    // ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½œæˆ
     auto window        = this->object->GetComponent<Window>();
     this->windowHandle = window->WindowHandle();
 

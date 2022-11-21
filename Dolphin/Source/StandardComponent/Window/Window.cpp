@@ -6,7 +6,7 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)
 {
     this->closed               = false;
     this->className            = this->object->Name();
-    this->windowName           = L"‚¢‚é‚©ƒGƒ“ƒWƒ“ - " + this->className;
+    this->windowName           = L"ã„ã‚‹ã‹ã‚¨ãƒ³ã‚¸ãƒ³ - " + this->className;
     this->instanceHandle       = ((HINSTANCE)GetModuleHandle(0));
     this->thirdWindowProcedure = nullptr;
     this->windowClass          = {0};
@@ -121,8 +121,8 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::StaticWindowProc(
 
 void Dolphin::StandardComponent::Window::Start()
 {
-    // eƒIƒuƒWƒFƒNƒg‚É window ƒRƒ“ƒ|[ƒlƒ“ƒg‚ª‚ ‚éê‡,
-    // ‚»‚ê‚Ìq‚Æ‚µ‚ÄƒEƒBƒ“ƒhƒE‚ğ¶¬‚·‚é.
+    // è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã« window ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒã‚ã‚‹å ´åˆ,
+    // ãã‚Œã®å­ã¨ã—ã¦ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆã™ã‚‹.
     if (this->object->Nest()->Parent() != nullptr)
     {
         this->parentHandle = this->object->Nest()
@@ -161,6 +161,6 @@ void Dolphin::StandardComponent::Window::Tick()
     }
     else
     {
-        // ƒQ[ƒ€‚Ìˆ—
+        // ã‚²ãƒ¼ãƒ ã®å‡¦ç†
     }
 }
