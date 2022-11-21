@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "DolphinMacro.h"
 #include "DolphinStd.h"
 

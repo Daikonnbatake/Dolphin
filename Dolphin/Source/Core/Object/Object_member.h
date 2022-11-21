@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "DolphinStd.h"
 #include "Object_forward.h"
 #include "Source/Core/Component/Component_member.h"

@@ -108,6 +108,36 @@
     <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer_inline.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\InputManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\IButtonReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\ICursorStateReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyCode.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\IMouseReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\IKeyboardReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Object\Object.cpp">
@@ -147,6 +177,21 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\InputManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#pragma comment(lib, "d2d1")
+﻿#pragma comment(lib, "d2d1")
 #pragma comment(lib, "windowscodecs.lib")
 #include "Application.h"
 #include "Dolphin.h"
@@ -8,17 +8,18 @@
 #include <dwrite.h>
 #include <wincodec.h>
 #include <windows.h>
+#include <iostream>
 
 namespace Dolphin
 {
     // デバッグ用
-    LPCWSTR                             filename;
-    IWICImagingFactory*                 factory;
-    IWICBitmapDecoder*                  decoder;
-    IWICBitmapFrameDecode*              frame;
-    IWICFormatConverter*                formatConverter;
-    ID2D1Bitmap*                        bitmap;
-    Dolphin::StandardComponent::Window* rootWindow;
+    LPCWSTR                filename;
+    IWICImagingFactory*    factory;
+    IWICBitmapDecoder*     decoder;
+    IWICBitmapFrameDecode* frame;
+    IWICFormatConverter*   formatConverter;
+    ID2D1Bitmap*           bitmap;
+    Window*                rootWindow;
 
 
     /**************************************************************************
@@ -32,6 +33,7 @@ namespace Dolphin
             .AddComponent<Transform2D>()
             .AddComponent<Window>()
             .AddComponent<Direct2DRenderer>()
+            .AddComponent<InputManager>()
             .Child(
                 NEW(L"ObjectA")
                     .AddComponent<Transform2D>()
@@ -40,7 +42,7 @@ namespace Dolphin
                     .Child(NEW(L"ObjectAA").AddComponent<Transform2D>()
                            //.AddComponent<Window>()
                            //.AddComponent<Direct2DRenderer>()
-                     )
+                           )
                     .Child(
                         NEW(L"ObjectAB")
                             .AddComponent<Transform2D>()
@@ -49,9 +51,7 @@ namespace Dolphin
                             .Child(NEW(L"ObjectABA").AddComponent<Transform2D>()
                                    //.AddComponent<Window>()
                                    //.AddComponent<Direct2DRenderer>()
-                            )
-                    )
-            );
+                                   )));
     }
 
 
@@ -62,7 +62,6 @@ namespace Dolphin
      *************************************************************************/
     void Start(Application& app)
     {
-        using namespace Dolphin::StandardComponent;
 
         // デバッグ用画像表示やつ初期化
         filename        = L"../Dolphin/Application/Resource/dummy.png";
@@ -118,6 +117,28 @@ namespace Dolphin
      *************************************************************************/
     void Update(Application& app)
     {
+        auto window = app.Root()->GetComponent<Window>();
+        auto keyboard = app.Root()
+            ->GetComponent<InputManager>()
+            ->KeyboardStatus();
+
+        auto cursor = app.Root()
+            ->GetComponent<InputManager>()
+            ->MouseStatus()
+            ->Position();
+
+        string x = std::to_wstring(cursor->X());
+        string y = std::to_wstring(cursor->Y());
+        string a = L"Dolphin - root | x:";
+        string b = L", y:";
+        string title = a + x + b + y;
+        window->Title(title.c_str());
+
+        if (keyboard->KeyState(R)->IsPush())
+        {
+            MessageBox(NULL, L"R キーが押されました", L"Debug", MB_OK);
+        }
+
         if (rootWindow->Closed())
             app.Quit();
     }

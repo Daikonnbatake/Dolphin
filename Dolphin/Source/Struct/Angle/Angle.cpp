@@ -1,4 +1,4 @@
-#include "Angle.h"
+﻿#include "Angle.h"
 
 Dolphin::Struct::Angle::Angle() { this->radian = 0; }
 Dolphin::Struct::Angle::Angle(double degree)

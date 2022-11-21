@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "DolphinCore.h"
 #include "DolphinStd.h"
 #include "DolphinStruct.h"

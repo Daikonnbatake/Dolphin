@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // Component
 #include "Source/Core/Component/Component_forward.h"

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Source/Core/ObjectBuilder/ObjectBuilder_forward.h"
 #include "Source/Core/ObjectBuilder/ObjectBuilder_member.h"
 

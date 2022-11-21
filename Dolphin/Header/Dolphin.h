@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "DolphinCore.h"
 #include "DolphinMacro.h"
 #include "DolphinStandardComponent.h"
@@ -8,4 +8,5 @@
 using namespace Dolphin;
 using namespace Dolphin::Core;
 using namespace Dolphin::StandardComponent;
+using namespace Dolphin::StandardComponent::Input;
 using namespace Dolphin::Struct;

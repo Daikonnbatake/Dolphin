@@ -1,4 +1,4 @@
-#include "Vector2.h"
+﻿#include "Vector2.h"
 
 Dolphin::Struct::Vector2::Vector2() : x(0), y(0){};
 Dolphin::Struct::Vector2::Vector2(float x, float y) : x(x), y(y){};
