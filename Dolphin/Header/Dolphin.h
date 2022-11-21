@@ -1,7 +1,7 @@
 #pragma once
 #include "DolphinCore.h"
-#include "DolphinStandardComponent.h"
 #include "DolphinMacro.h"
+#include "DolphinStandardComponent.h"
 #include "DolphinStd.h"
 #include "DolphinStruct.h"
 

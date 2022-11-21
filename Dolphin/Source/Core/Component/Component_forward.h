@@ -3,8 +3,8 @@
 
 namespace Dolphin
 {
-	namespace Core
-	{
-		class Component;
-	}
+    namespace Core
+    {
+        class Component;
+    }
 }
