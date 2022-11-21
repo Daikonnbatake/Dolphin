@@ -3,8 +3,8 @@
 
 namespace Dolphin
 {
-	namespace StandardComponent
-	{
-		class Nest;
-	}
+    namespace StandardComponent
+    {
+        class Nest;
+    }
 }
