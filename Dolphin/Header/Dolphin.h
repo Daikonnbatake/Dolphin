@@ -8,4 +8,5 @@
 using namespace Dolphin;
 using namespace Dolphin::Core;
 using namespace Dolphin::StandardComponent;
+using namespace Dolphin::StandardComponent::Input;
 using namespace Dolphin::Struct;

@@ -159,6 +159,16 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\ICursorStateReader.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\IButtonReader.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\IKeyboardReader.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\IMouseReader.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyCode.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.h" />
+    <ClInclude Include="Source\StandardComponent\InputManager\InputManager.h" />
     <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.h" />
     <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer_inline.h" />
     <ClInclude Include="Source\Struct\DolphinEvent\DolphinEvent.h" />
@@ -192,6 +202,11 @@
     <ClInclude Include="Source\StandardComponent\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp" />
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.cpp" />
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.cpp" />
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.cpp" />
+    <ClCompile Include="Source\StandardComponent\InputManager\InputManager.cpp" />
     <ClCompile Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.cpp" />
     <ClCompile Include="Source\Struct\DolphinEvent\DolphinEvent.cpp" />
     <ClCompile Include="Source\Struct\Angle\Angle.cpp" />

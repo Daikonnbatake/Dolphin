@@ -24,6 +24,7 @@ HWND Dolphin::StandardComponent::Window::WindowHandle()
 void Dolphin::StandardComponent::Window::Title(string title)
 {
     this->windowName = title;
+    SetWindowText(this->windowHandle, this->windowName.c_str());
 }
 void Dolphin::StandardComponent::Window::Style(long windowStyle)
 {
