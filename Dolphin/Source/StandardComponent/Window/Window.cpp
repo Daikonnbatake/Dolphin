@@ -138,7 +138,7 @@ void Dolphin::StandardComponent::Window::Start()
     this->windowHandle = CreateWindow(
         this->className.c_str(),
         this->windowName.c_str(),
-        WS_OVERLAPPEDWINDOW,
+        WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
         480,
