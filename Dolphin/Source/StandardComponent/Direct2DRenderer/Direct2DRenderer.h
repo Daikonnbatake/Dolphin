@@ -23,6 +23,8 @@ namespace Dolphin
             function<void(void)>   rendering;
 
             void                   Start() override;
+            void                   Tick() override;
+            void                   LateTick() override;
 
           public:
             Direct2DRenderer(Dolphin::Core::Object* object);

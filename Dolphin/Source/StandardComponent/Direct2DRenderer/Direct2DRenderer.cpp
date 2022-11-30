@@ -47,6 +47,27 @@ void Dolphin::StandardComponent::Direct2DRenderer::Start()
 }
 
 
+void Dolphin::StandardComponent::Direct2DRenderer::Tick()
+{
+    RECT rect;
+    GetClientRect(this->windowHandle, &rect);
+    D2D1_SIZE_U size = D2D1::SizeU(rect.right, rect.bottom);
+    this->renderTarget->Resize(size);
+    float dpi        = GetDpiForWindow(this->windowHandle);
+    float dpiScaling = dpi / 96.0f;
+    this->renderTarget->BeginDraw();
+
+    this->renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+    this->renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Blue));
+}
+
+
+void Dolphin::StandardComponent::Direct2DRenderer::LateTick()
+{
+    renderTarget->EndDraw();
+}
+
+
 void Dolphin::StandardComponent::Direct2DRenderer::RenderingProcess(
     function<void(void)> renderingProcess)
 {

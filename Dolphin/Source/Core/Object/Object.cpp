@@ -26,7 +26,9 @@ void Dolphin::Core::Object::Tick()
         return;
     if (this->onStart)
         this->Start();
-    FOREACH(e, *this->components) e->Tick();
+    int length = this->components->size();
+    FOR(i, length) (*this->components)[length-i-1]->Tick();
+    FOR(i, length) (*this->components)[length-i-1]->LateTick();
 }
 
 
