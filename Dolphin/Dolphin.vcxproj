@@ -159,6 +159,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.h" />
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\ICursorStateReader.h" />
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.h" />
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Source\StandardComponent\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.cpp" />

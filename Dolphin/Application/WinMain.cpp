@@ -35,9 +35,9 @@ namespace Dolphin
             .AddComponent<Direct2DRenderer>()
             .AddComponent<InputManager>()
             .Child(
-                NEW(L"ObjectA")
+                NEW(L"Sprite1")
                     .AddComponent<Transform2D>()
-                    //.AddComponent<Window>()
+                    .AddComponent<Direct2DSprite>()
                     //.AddComponent<Direct2DRenderer>()
                     .Child(NEW(L"ObjectAA").AddComponent<Transform2D>()
                            //.AddComponent<Window>()
@@ -151,6 +151,7 @@ namespace Dolphin
      *************************************************************************/
     void Rendering(Application& app)
     {
+        /*
         using namespace Dolphin::StandardComponent;
 
         auto window = app.Root()->GetComponent<Window>();
@@ -180,6 +181,7 @@ namespace Dolphin
             nullptr);
 
         renderTarget->EndDraw();
+        */
     }
 
 

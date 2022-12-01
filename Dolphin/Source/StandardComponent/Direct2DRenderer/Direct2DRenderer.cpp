@@ -73,6 +73,8 @@ void Dolphin::StandardComponent::Direct2DRenderer::RenderingProcess(
 {
     this->rendering = std::bind(&Direct2DRenderer::rendering, this);
 }
+
+
 ID2D1HwndRenderTarget*
 Dolphin::StandardComponent::Direct2DRenderer::Rendertarget()
 {
