@@ -1,76 +1,53 @@
 #include "Direct2DSprite.h"
 
+std::unordered_map<ID2D1RenderTarget*, Dolphin::StandardComponent::Direct2DSprite::ImageCache*>*
+    Dolphin::StandardComponent::Direct2DSprite::imageCache;
+
+
 Dolphin::StandardComponent::Direct2DSprite::Direct2DSprite(Core::Object* object)
     : Component(object)
 {
-    if (FAILED(CoInitialize(nullptr))) return;
+    if (imageCache == nullptr)
+    {
+        this->imageCache = new unordered_map<ID2D1RenderTarget*, ImageCache*>();
+    }
 
-	CoCreateInstance(
-        CLSID_WICImagingFactory,
-        nullptr,
-        CLSCTX_INPROC_SERVER,
-        IID_IWICImagingFactory,
-        (LPVOID*)&factory
-	);
-
-    this->factory->CreateDecoderFromFilename(
-        L"../Dolphin/Application/Resource/dummy.png",
-        nullptr,
-        GENERIC_READ,
-        WICDecodeMetadataCacheOnLoad,
-        &decoder
-    );
-
-    this->decoder->GetFrame(0, &frame);
-    this->factory->CreateFormatConverter(&formatConverter);
-    formatConverter->Initialize(
-        this->frame,
-        GUID_WICPixelFormat32bppPBGRA,
-        WICBitmapDitherTypeNone,
-        nullptr,
-        1.0f,
-        WICBitmapPaletteTypeMedianCut
-    );
+    this->renderTarget = nullptr;
+    this->spriteRect = D2D1::RectF(0, 0, 255, 255);
 }
 
 
 Dolphin::StandardComponent::Direct2DSprite::~Direct2DSprite()
 {
-    this->factory->Release();
-    this->decoder->Release();
-    this->frame->Release();
-    this->formatConverter->Release();
-    CoUninitialize();
+    if (this->imageCache != nullptr)
+    {
+        delete this->imageCache;
+        this->imageCache = nullptr;
+    }
+}
+
+
+void Dolphin::StandardComponent::Direct2DSprite::ImagePath(string path)
+{
+    this->path = path;
 }
 
 
 void Dolphin::StandardComponent::Direct2DSprite::Start()
 {
     this->renderTarget = this->object->Nest()->Parent()->GetComponent<Direct2DRenderer>()->Rendertarget();
-    this->windowHandle = this->object->Nest()->Parent()->GetComponent<Window>()->WindowHandle();
-
-    this->renderTarget->CreateBitmapFromWicBitmap(
-        formatConverter,
-        nullptr,
-        &bitmap);
+    (*this->imageCache)[this->renderTarget] = new ImageCache(this->renderTarget);
 }
 
 
 void Dolphin::StandardComponent::Direct2DSprite::Tick()
 {
-    RECT rect;
-    GetClientRect(this->windowHandle, &rect);
-    D2D1_SIZE_U size = D2D1::SizeU(rect.right, rect.bottom);
-    float dpi        = GetDpiForWindow(this->windowHandle);
-    float dpiScaling = dpi / 96.0f;
+    ID2D1Bitmap* bitmap = (*imageCache)[this->renderTarget]->Bitmap(this->path);
+    if (bitmap == nullptr) return;
 
     this->renderTarget->DrawBitmap(
         bitmap,
-        D2D1::RectF(
-            rect.left * dpiScaling,
-            rect.top * dpiScaling,
-            rect.right * dpiScaling,
-            rect.bottom * dpiScaling),
+        this->spriteRect,
         1.0f,
         D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
         nullptr
