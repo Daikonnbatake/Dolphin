@@ -27,6 +27,7 @@ namespace Dolphin
 
 
             void                                          Start() override;
+            void                                          Tick() override;
             void                                          Quit();
             void             GenerateWindowClass(WNDCLASS& target);
             LRESULT CALLBACK WindowProcedure(
@@ -49,7 +50,6 @@ namespace Dolphin
             string                    Title();
             void                      Title(string title);
             void                      Style(long windowStyle);
-            void                      Tick() override;
             void                      ThirdWindowProcedure(
                                      function<LRESULT(HWND, UINT, WPARAM, LPARAM)> windowProc);
         };

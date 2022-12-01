@@ -13,6 +13,7 @@
 namespace Dolphin
 {
     // デバッグ用
+    /*
     LPCWSTR                filename;
     IWICImagingFactory*    factory;
     IWICBitmapDecoder*     decoder;
@@ -20,6 +21,7 @@ namespace Dolphin
     IWICFormatConverter*   formatConverter;
     ID2D1Bitmap*           bitmap;
     Window*                rootWindow;
+    */
 
 
     /**************************************************************************
@@ -29,29 +31,41 @@ namespace Dolphin
      *************************************************************************/
     Dolphin::Core::Object* InitObjectTree()
     {
+        using namespace Dolphin::StandardComponent;
+
         return NEW(L"root")
-            .AddComponent<Transform2D>()
-            .AddComponent<Window>()
-            .AddComponent<Direct2DRenderer>()
             .AddComponent<InputManager>()
             .Child(
-                NEW(L"Sprite1")
+                NEW(L"ChildWindow1")
                     .AddComponent<Transform2D>()
-                    .AddComponent<Direct2DSprite>()
-                    //.AddComponent<Direct2DRenderer>()
-                    .Child(NEW(L"ObjectAA").AddComponent<Transform2D>()
-                           //.AddComponent<Window>()
-                           //.AddComponent<Direct2DRenderer>()
-                           )
+                    .AddComponent<Window>()
+                    .AddComponent<Direct2DRenderer>()
                     .Child(
-                        NEW(L"ObjectAB")
-                            .AddComponent<Transform2D>()
-                            //.AddComponent<Window>()
-                            //.AddComponent<Direct2DRenderer>()
-                            .Child(NEW(L"ObjectABA").AddComponent<Transform2D>()
-                                   //.AddComponent<Window>()
-                                   //.AddComponent<Direct2DRenderer>()
-                                   )));
+                        NEW(L"Sprite1")
+                        .AddComponent<Transform2D>()
+                        .AddComponent<Direct2DSprite>()
+                    )
+            )
+            .Child(NEW(L"ChildWindow2")
+                       .AddComponent<Transform2D>()
+                       .AddComponent<Window>()
+                       .AddComponent<Direct2DRenderer>()
+                       .Child(NEW(L"Sprite1")
+                                  .AddComponent<Transform2D>()
+                                  .AddComponent<Direct2DSprite>()
+                       )
+            )
+            .Child(
+                NEW(L"ChildWindow3")
+                    .AddComponent<Transform2D>()
+                    .AddComponent<Window>()
+                    .AddComponent<Direct2DRenderer>()
+                    .Child(
+                        NEW(L"Sprite1")
+                        .AddComponent<Transform2D>()
+                        .AddComponent<Direct2DSprite>()
+                    )
+            );
     }
 
 
@@ -62,7 +76,7 @@ namespace Dolphin
      *************************************************************************/
     void Start(Application& app)
     {
-
+        /*
         // デバッグ用画像表示やつ初期化
         filename        = L"../Dolphin/Application/Resource/dummy.png";
         factory         = nullptr;
@@ -107,6 +121,7 @@ namespace Dolphin
             formatConverter,
             nullptr,
             &bitmap);
+        */
     }
 
 
@@ -117,6 +132,7 @@ namespace Dolphin
      *************************************************************************/
     void Update(Application& app)
     {
+        /*
         auto window = app.Root()->GetComponent<Window>();
         auto keyboard = app.Root()
             ->GetComponent<InputManager>()
@@ -138,7 +154,9 @@ namespace Dolphin
         {
             MessageBox(NULL, L"R キーが押されました", L"Debug", MB_OK);
         }
+        */
 
+        auto rootWindow = app.Root()->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
         if (rootWindow->Closed())
             app.Quit();
     }
@@ -192,12 +210,14 @@ namespace Dolphin
      *************************************************************************/
     void Release(Application& app)
     {
+        /*
         // デバッグ用画像表示やつ解放
         factory->Release();
         decoder->Release();
         frame->Release();
         formatConverter->Release();
         CoUninitialize();
+        */
     }
 }
 

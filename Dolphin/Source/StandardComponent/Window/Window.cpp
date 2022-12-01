@@ -12,6 +12,21 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)
     this->windowClass          = {0};
     this->GenerateWindowClass(this->windowClass);
     RegisterClass(&(this->windowClass));
+
+    this->windowHandle = CreateWindow(
+        this->className.c_str(),
+        this->windowName.c_str(),
+        WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        480,
+        320,
+        ((this->parentHandle != nullptr) ? this->parentHandle : NULL),
+        NULL,
+        this->instanceHandle,
+        this);
+
+    ShowWindow(this->windowHandle, SW_SHOW);
 }
 
 
@@ -122,33 +137,6 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::StaticWindowProc(
 
 void Dolphin::StandardComponent::Window::Start()
 {
-    // 親オブジェクトに window コンポーネントがある場合,
-    // それの子としてウィンドウを生成する.
-    if (this->object->Nest()->Parent() != nullptr)
-    {
-        this->parentHandle = this->object->Nest()
-                                 ->Parent()
-                                 ->GetComponent<Window>()
-                                 ->WindowHandle();
-    }
-    else
-        this->parentHandle = nullptr;
-
-
-    this->windowHandle = CreateWindow(
-        this->className.c_str(),
-        this->windowName.c_str(),
-        WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX,
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        480,
-        320,
-        ((this->parentHandle != nullptr) ? this->parentHandle : NULL),
-        NULL,
-        this->instanceHandle,
-        this);
-
-    ShowWindow(this->windowHandle, SW_SHOW);
 }
 
 

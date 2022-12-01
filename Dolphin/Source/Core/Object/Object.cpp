@@ -15,7 +15,8 @@ Dolphin::Core::Object::Object(string name)
 
 void Dolphin::Core::Object::Start()
 {
-    FOREACH(e, *this->components) e->Start();
+    int length = this->components->size();
+    FOR(i, length) (*this->components)[length-i-1]->Start();
     this->onStart = false;
 }
 
