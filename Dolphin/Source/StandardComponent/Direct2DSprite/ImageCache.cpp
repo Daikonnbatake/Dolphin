@@ -2,11 +2,11 @@
 
 
 Dolphin::StandardComponent::Direct2DSprite::ImageCache::ImageCache(
-    ID2D1RenderTarget* renderTarget)
+    ID2D1DeviceContext* deviceContext)
 {
-    this->renderTarget = renderTarget;
+    this->deviceContext = deviceContext;
     this->factory      = nullptr;
-    this->cache        = unordered_map<string, ID2D1Bitmap*>();
+    this->cache        = unordered_map<string, ID2D1Bitmap1*>();
 
     HRESULT result;
     if (FAILED(CoInitialize(nullptr))) return;
@@ -39,7 +39,7 @@ Dolphin::StandardComponent::Direct2DSprite::ImageCache::~ImageCache()
 }
 
 
-ID2D1Bitmap*
+ID2D1Bitmap1*
 Dolphin::StandardComponent::Direct2DSprite::ImageCache::Bitmap(string path)
 {
     // キャッシュがあるときはキャッシュを使う
@@ -51,7 +51,7 @@ Dolphin::StandardComponent::Direct2DSprite::ImageCache::Bitmap(string path)
     IWICBitmapDecoder*     decoder   = nullptr;
     IWICBitmapFrameDecode* frame     = nullptr;
     IWICFormatConverter*   converter = nullptr;
-    ID2D1Bitmap*           bitmap    = nullptr;
+    ID2D1Bitmap1*          bitmap    = nullptr;
 
     result = this->factory->CreateDecoderFromFilename(
         path.c_str(),
@@ -78,7 +78,7 @@ Dolphin::StandardComponent::Direct2DSprite::ImageCache::Bitmap(string path)
 
     if (SUCCEEDED(result))
     {
-        result = this->renderTarget->CreateBitmapFromWicBitmap(
+        result = this->deviceContext->CreateBitmapFromWicBitmap(
             converter,
             nullptr,
             &bitmap

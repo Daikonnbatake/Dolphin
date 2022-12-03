@@ -34,14 +34,16 @@ namespace Dolphin
                         .AddComponent<Direct2DSprite>()
                     )
             )
-            .Child(NEW(L"ChildWindow2")
-                       .AddComponent<Transform2D>()
-                       .AddComponent<Window>()
-                       .AddComponent<Direct2DRenderer>()
-                       .Child(NEW(L"Sprite2")
-                                  .AddComponent<Transform2D>()
-                                  .AddComponent<Direct2DSprite>()
-                       )
+            .Child(
+                NEW(L"ChildWindow2")
+                    .AddComponent<Transform2D>()
+                    .AddComponent<Window>()
+                    .AddComponent<Direct2DRenderer>()
+                    .Child(
+                        NEW(L"Sprite2")
+                            .AddComponent<Transform2D>()
+                            .AddComponent<Direct2DSprite>()
+                    )
             )
             .Child(
                 NEW(L"ChildWindow3")
@@ -69,9 +71,10 @@ namespace Dolphin
         auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
         auto sprite3 = root->Nest()->GetChild(L"ChildWindow3")->Nest()->GetChild(L"Sprite3")->GetComponent<Direct2DSprite>();
 
-        sprite1->ImagePath(L"../Dolphin/Application/Resource/dummy.png");
-        sprite2->ImagePath(L"../Dolphin/Application/Resource/dummy.png");
-        sprite3->ImagePath(L"../Dolphin/Application/Resource/dummy.png");
+        sprite1->ImagePath(L"C:/Users/taise/Downloads/test.png");
+        sprite1->Clipping(64, 64, 128, 128);
+        sprite2->ImagePath(L"C:/Users/taise/Downloads/test.png");
+        sprite3->ImagePath(L"C:/Users/taise/Downloads/test.png");
     }
 
 

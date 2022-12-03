@@ -210,8 +210,10 @@
     <ClInclude Include="Source\Struct\Vector2\Vector2.h" />
     <ClInclude Include="Source\StandardComponent\Transform2D\Transform2D.h" />
     <ClInclude Include="Source\StandardComponent\Window\Window.h" />
+    <ClInclude Include="Source\Utility\Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.cpp" />
     <ClCompile Include="Source\StandardComponent\Direct2DSprite\ImageCache.cpp" />
     <ClCompile Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp" />
@@ -232,6 +234,7 @@
     <ClCompile Include="Source\StandardComponent\Transform2D\Transform2D.cpp" />
     <ClCompile Include="Source\StandardComponent\Window\Window.cpp" />
     <ClCompile Include="Application\WinMain.cpp" />
+    <ClCompile Include="Source\Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Application\Resource\dummy.png" />
