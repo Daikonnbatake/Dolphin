@@ -12,7 +12,6 @@ Dolphin::StandardComponent::Direct2DSprite::Direct2DSprite(Core::Object* object)
         this->imageCache = new unordered_map<ID2D1RenderTarget*, ImageCache*>();
     }
 
-    this->clipping = false;
     this->matrix = D2D1::Matrix3x2F::Identity();
     this->bitmap = nullptr;
     this->deviceContext = nullptr;
@@ -37,8 +36,8 @@ void Dolphin::StandardComponent::Direct2DSprite::ImagePath(string path)
     this->bitmap = (*imageCache)[this->deviceContext]->Bitmap(this->path);
     if (this->bitmap == nullptr) return;
     const D2D1_SIZE_U& size = this->bitmap->GetPixelSize();
-    this->spriteRect = D2D1::RectF(0, 0, size.width-1, size.height-1);
-    this->clippingRect = D2D1::RectF();
+    this->spriteRect = D2D1::RectF(0, 0, size.width - 1, size.height - 1);
+    this->clippingRect = D2D1::RectF(0, 0, size.width - 1, size.height - 1);
 }
 
 
@@ -57,13 +56,20 @@ void Dolphin::StandardComponent::Direct2DSprite::Clipping(
 {
     this->clippingRect = D2D1::RectF(left, top, right, bottom);
     this->spriteRect = D2D1::RectF(0, 0, right - left, bottom - top);
-    this->clipping = true;
 }
 
 
 void Dolphin::StandardComponent::Direct2DSprite::ClearClipping()
 {
-    this->clipping = false;
+    const D2D1_SIZE_U& size = this->bitmap->GetPixelSize();
+    this->spriteRect   = D2D1::RectF(0, 0, size.width - 1, size.height - 1);
+    this->clippingRect = D2D1::RectF(0, 0, size.width - 1, size.height - 1);
+}
+
+
+D2D1_RECT_F Dolphin::StandardComponent::Direct2DSprite::CropRect()
+{
+    return this->clippingRect;
 }
 
 
@@ -77,28 +83,41 @@ void Dolphin::StandardComponent::Direct2DSprite::Start()
 void Dolphin::StandardComponent::Direct2DSprite::Tick()
 {
     if (this->bitmap == nullptr) return;
-    ID2D1Effect* affineTransformEffect;
+    ID2D1Effect* crop = nullptr;
+    ID2D1Effect* transform = nullptr;
+    D2D1_MATRIX_3X2_F offset = D2D1::Matrix3x2F::Translation(
+        D2D1::SizeF(
+            -this->clippingRect.left,
+            -this->clippingRect.top
+        )
+    );
 
-    if (this->clipping)
+    this->deviceContext->CreateEffect(CLSID_D2D1Crop, &crop);
+    crop->SetInput(0, this->bitmap);
+    crop->SetValue(D2D1_CROP_PROP_RECT, this->clippingRect);
+
+    this->deviceContext->CreateEffect(CLSID_D2D12DAffineTransform, &transform);
+    transform->SetInputEffect(0, crop);
+    transform->SetValue(
+        D2D1_2DAFFINETRANSFORM_PROP_TRANSFORM_MATRIX,
+        this->matrix * offset
+    );
+    transform->SetValue(
+        D2D1_2DAFFINETRANSFORM_PROP_INTERPOLATION_MODE,
+        D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_NEAREST_NEIGHBOR
+    );
+
+    this->deviceContext->DrawImage(transform);
+
+    if (transform != nullptr)
     {
-        // クリッピングする場合
-        this->deviceContext->DrawBitmap(
-            bitmap,
-            this->spriteRect,
-            1.0f,
-            D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
-            this->clippingRect
-        );
+        transform->Release();
+        transform = nullptr;
     }
-    else
+
+    if (crop != nullptr)
     {
-        // クリッピングしない場合
-        this->deviceContext->DrawBitmap(
-            bitmap,
-            this->spriteRect,
-            1.0f,
-            D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
-            nullptr
-        );
+        crop->Release();
+        crop = nullptr;
     }
 }

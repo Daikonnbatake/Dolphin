@@ -144,6 +144,9 @@
     <ClInclude Include="Source\Utility\Utility.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Object\Object.cpp">
