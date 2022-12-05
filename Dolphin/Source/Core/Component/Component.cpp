@@ -1,4 +1,5 @@
-﻿#include "Component_member.h"
+﻿#include "pch.h"
+#include "Component_member.h"
 
 Dolphin::Core::Component::Component(Object* object) { this->object = object; }
 

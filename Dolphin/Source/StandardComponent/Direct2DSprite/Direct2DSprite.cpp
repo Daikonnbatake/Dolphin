@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Direct2DSprite.h"
 
 std::unordered_map<ID2D1RenderTarget*, Dolphin::StandardComponent::Direct2DSprite::ImageCache*>*
