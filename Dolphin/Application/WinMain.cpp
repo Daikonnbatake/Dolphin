@@ -12,15 +12,7 @@
 
 namespace Dolphin
 {
-    // デバッグ用
-    LPCWSTR                filename;
-    IWICImagingFactory*    factory;
-    IWICBitmapDecoder*     decoder;
-    IWICBitmapFrameDecode* frame;
-    IWICFormatConverter*   formatConverter;
-    ID2D1Bitmap*           bitmap;
-    Window*                rootWindow;
-
+    double degrees;
 
     /**************************************************************************
      *
@@ -29,29 +21,43 @@ namespace Dolphin
      *************************************************************************/
     Dolphin::Core::Object* InitObjectTree()
     {
+        using namespace Dolphin::StandardComponent;
+
         return NEW(L"root")
-            .AddComponent<Transform2D>()
-            .AddComponent<Window>()
-            .AddComponent<Direct2DRenderer>()
             .AddComponent<InputManager>()
             .Child(
-                NEW(L"ObjectA")
+                NEW(L"ChildWindow1")
                     .AddComponent<Transform2D>()
-                    //.AddComponent<Window>()
-                    //.AddComponent<Direct2DRenderer>()
-                    .Child(NEW(L"ObjectAA").AddComponent<Transform2D>()
-                           //.AddComponent<Window>()
-                           //.AddComponent<Direct2DRenderer>()
-                           )
+                    .AddComponent<Window>()
+                    .AddComponent<Direct2DRenderer>()
                     .Child(
-                        NEW(L"ObjectAB")
+                        NEW(L"Sprite1")
+                        .AddComponent<Transform2D>()
+                        .AddComponent<Direct2DSprite>()
+                    )
+            )
+            .Child(
+                NEW(L"ChildWindow2")
+                    .AddComponent<Transform2D>()
+                    .AddComponent<Window>()
+                    .AddComponent<Direct2DRenderer>()
+                    .Child(
+                        NEW(L"Sprite2")
                             .AddComponent<Transform2D>()
-                            //.AddComponent<Window>()
-                            //.AddComponent<Direct2DRenderer>()
-                            .Child(NEW(L"ObjectABA").AddComponent<Transform2D>()
-                                   //.AddComponent<Window>()
-                                   //.AddComponent<Direct2DRenderer>()
-                                   )));
+                            .AddComponent<Direct2DSprite>()
+                    )
+            )
+            .Child(
+                NEW(L"ChildWindow3")
+                    .AddComponent<Transform2D>()
+                    .AddComponent<Window>()
+                    .AddComponent<Direct2DRenderer>()
+                    .Child(
+                        NEW(L"Sprite3")
+                        .AddComponent<Transform2D>()
+                        .AddComponent<Direct2DSprite>()
+                    )
+            );
     }
 
 
@@ -62,51 +68,18 @@ namespace Dolphin
      *************************************************************************/
     void Start(Application& app)
     {
+        auto root = app.Root();
+        auto sprite1 = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<Direct2DSprite>();
+        auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
+        auto sprite3 = root->Nest()->GetChild(L"ChildWindow3")->Nest()->GetChild(L"Sprite3")->GetComponent<Direct2DSprite>();
 
-        // デバッグ用画像表示やつ初期化
-        filename        = L"../Dolphin/Application/Resource/dummy.png";
-        factory         = nullptr;
-        decoder         = nullptr;
-        frame           = nullptr;
-        formatConverter = nullptr;
-        bitmap          = nullptr;
+        sprite1->ImagePath(L"C:/Users/taise/Pictures/クソ画像/zunda_fx.png");
+        sprite1->Clipping(64, 64, 128, 128);
+        sprite2->ImagePath(L"C:/Users/taise/Pictures/クソ画像/zunda_fx.png");
+        sprite3->ImagePath(L"C:/Users/taise/Pictures/クソ画像/zunda_fx.png");
+        sprite3->AffineTransform(AffineBuilder(sprite3->CropRect()).FlipX());
 
-        // デバッグ用画像表示やつに渡すコンポーネント
-        auto d2d    = app.Root()->GetComponent<Direct2DRenderer>();
-        auto window = app.Root()->GetComponent<Window>();
-        rootWindow  = window;
-
-
-        if (FAILED(CoInitialize(nullptr)))
-            return;
-        HRESULT result = CoCreateInstance(
-            CLSID_WICImagingFactory,
-            nullptr,
-            CLSCTX_INPROC_SERVER,
-            IID_IWICImagingFactory,
-            (LPVOID*)&factory);
-        if (FAILED(result))
-            return;
-
-        factory->CreateDecoderFromFilename(
-            filename,
-            nullptr,
-            GENERIC_READ,
-            WICDecodeMetadataCacheOnLoad,
-            &decoder);
-        decoder->GetFrame(0, &frame);
-        factory->CreateFormatConverter(&formatConverter);
-        formatConverter->Initialize(
-            frame,
-            GUID_WICPixelFormat32bppPBGRA,
-            WICBitmapDitherTypeNone,
-            nullptr,
-            1.0f,
-            WICBitmapPaletteTypeMedianCut);
-        d2d->Rendertarget()->CreateBitmapFromWicBitmap(
-            formatConverter,
-            nullptr,
-            &bitmap);
+        degrees = 0;
     }
 
 
@@ -117,28 +90,20 @@ namespace Dolphin
      *************************************************************************/
     void Update(Application& app)
     {
-        auto window = app.Root()->GetComponent<Window>();
-        auto keyboard = app.Root()
-            ->GetComponent<InputManager>()
-            ->KeyboardStatus();
+        auto root    = app.Root();
+        auto sprite1 = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<Direct2DSprite>();
+        auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
 
-        auto cursor = app.Root()
-            ->GetComponent<InputManager>()
-            ->MouseStatus()
-            ->Position();
+        degrees = (degrees + 0.1L);
+        AffineBuilder transform1 = AffineBuilder(sprite1->CropRect());
+        AffineBuilder transform2 = AffineBuilder(sprite2->CropRect());
+        transform1.Origin(0, 1).Rotate(degrees);
+        transform2.Rotate(degrees);
+        sprite1->AffineTransform(transform1);
+        sprite2->AffineTransform(transform2);
 
-        string x = std::to_wstring(cursor->X());
-        string y = std::to_wstring(cursor->Y());
-        string a = L"Dolphin - root | x:";
-        string b = L", y:";
-        string title = a + x + b + y;
-        window->Title(title.c_str());
 
-        if (keyboard->KeyState(R)->IsPush())
-        {
-            MessageBox(NULL, L"R キーが押されました", L"Debug", MB_OK);
-        }
-
+        auto rootWindow = app.Root()->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
         if (rootWindow->Closed())
             app.Quit();
     }
@@ -151,35 +116,6 @@ namespace Dolphin
      *************************************************************************/
     void Rendering(Application& app)
     {
-        using namespace Dolphin::StandardComponent;
-
-        auto window = app.Root()->GetComponent<Window>();
-        auto d2d    = app.Root()->GetComponent<Direct2DRenderer>();
-
-        ID2D1HwndRenderTarget* renderTarget = d2d->Rendertarget();
-        RECT                   rect;
-        GetClientRect(window->WindowHandle(), &rect);
-        D2D1_SIZE_U size = D2D1::SizeU(rect.right, rect.bottom);
-        renderTarget->Resize(size);
-        float dpi        = GetDpiForWindow(window->WindowHandle());
-        float dpiScaling = dpi / 96.0f;
-        renderTarget->BeginDraw();
-
-        renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
-        renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Blue));
-
-        renderTarget->DrawBitmap(
-            bitmap,
-            D2D1::RectF(
-                rect.left * dpiScaling,
-                rect.top * dpiScaling,
-                rect.right * dpiScaling,
-                rect.bottom * dpiScaling),
-            1.0f,
-            D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
-            nullptr);
-
-        renderTarget->EndDraw();
     }
 
 
@@ -190,12 +126,6 @@ namespace Dolphin
      *************************************************************************/
     void Release(Application& app)
     {
-        // デバッグ用画像表示やつ解放
-        factory->Release();
-        decoder->Release();
-        frame->Release();
-        formatConverter->Release();
-        CoUninitialize();
     }
 }
 

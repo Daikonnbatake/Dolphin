@@ -4,6 +4,9 @@
 #include "Source/StandardComponent/Direct2DRenderer/Direct2DRenderer.h"
 #include "Source/StandardComponent/Direct2DRenderer/Direct2DRenderer_inline.h"
 
+// Direct2DSprite
+#include "Source/StandardComponent/Direct2DSprite/Direct2DSprite.h"
+
 // inputManager
 #include "Source/StandardComponent/InputManager/InputManager.h"
 #include "Source/StandardComponent/InputManager/Observer/ButtonStatus/IButtonReader.h"

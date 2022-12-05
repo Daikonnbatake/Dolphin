@@ -19,6 +19,7 @@ namespace Dolphin
             virtual ~Component() {};
             virtual void Start() {};
             virtual void Tick() {};
+            virtual void LateTick() {};
 
 
           public:

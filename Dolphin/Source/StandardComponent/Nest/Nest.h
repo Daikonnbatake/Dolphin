@@ -14,12 +14,12 @@ namespace Dolphin
           private:
             Dolphin::Core::Object*         parent;
             vector<Dolphin::Core::Object*> children;
+            void                   Tick() override;
 
 
           public:
             Nest(Dolphin::Core::Object* object);
             ~Nest() override;
-            void                   Tick() override;
             int                    ChildCount();
             Dolphin::Core::Object* Parent();
             Dolphin::Core::Object* MoveTo(Dolphin::Core::Object* target);

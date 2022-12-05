@@ -72,9 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <IntDir>$(Configuration)\..\_cache\Debug</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\..\_cache\Release</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -89,10 +93,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>clang-format -style=file</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>clang-format</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -103,6 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir); $(ProjectDir)Header</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -111,10 +118,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>clang-format -style=file</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>clang-format</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -159,6 +168,8 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.h" />
+    <ClInclude Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.h" />
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\ICursorStateReader.h" />
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.h" />
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.h" />
@@ -200,8 +211,12 @@
     <ClInclude Include="Source\Struct\Vector2\Vector2.h" />
     <ClInclude Include="Source\StandardComponent\Transform2D\Transform2D.h" />
     <ClInclude Include="Source\StandardComponent\Window\Window.h" />
+    <ClInclude Include="Source\Utility\Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.cpp" />
+    <ClCompile Include="Source\StandardComponent\Direct2DSprite\ImageCache.cpp" />
+    <ClCompile Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.cpp" />
     <ClCompile Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.cpp" />
@@ -220,6 +235,7 @@
     <ClCompile Include="Source\StandardComponent\Transform2D\Transform2D.cpp" />
     <ClCompile Include="Source\StandardComponent\Window\Window.cpp" />
     <ClCompile Include="Application\WinMain.cpp" />
+    <ClCompile Include="Source\Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Application\Resource\dummy.png" />
