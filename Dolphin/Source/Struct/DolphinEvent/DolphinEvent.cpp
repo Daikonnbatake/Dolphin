@@ -1,4 +1,5 @@
-﻿#include "DolphinEvent.h"
+﻿#include "pch.h"
+#include "DolphinEvent.h"
 
 template<class... Args>
 inline Dolphin::Struct::DolphinEvent<Args...>::DolphinEvent()

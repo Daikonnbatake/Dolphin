@@ -1,4 +1,5 @@
-﻿#include "MouseObserver.h"
+﻿#include "pch.h"
+#include "MouseObserver.h"
 
 
 Dolphin::StandardComponent::Input::MouseObserver*

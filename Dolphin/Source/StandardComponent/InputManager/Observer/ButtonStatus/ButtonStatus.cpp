@@ -1,4 +1,5 @@
-﻿#include "ButtonStatus.h"
+﻿#include "pch.h"
+#include "ButtonStatus.h"
 
 void Dolphin::StandardComponent::Input::ButtonStatus::Tick()
 {

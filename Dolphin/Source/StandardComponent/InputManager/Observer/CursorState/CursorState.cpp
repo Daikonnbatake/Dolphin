@@ -1,4 +1,5 @@
-﻿#include "CursorState.h"
+﻿#include "pch.h"
+#include "CursorState.h"
 
 Dolphin::StandardComponent::Input::CursorState::CursorState()
 {

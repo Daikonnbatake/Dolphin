@@ -15,34 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header\Core\Object.h">
+    <ClInclude Include="framework.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Header\Core\Component.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Core\Application.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\DolphinMacro.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\DolphinStd.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Dolphin.h">
+    <ClInclude Include="Header\Core\Object.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Header\Core\ObjectBuilder.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\Object\Object_forward.h">
+    <ClInclude Include="Header\Dolphin.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\Object\Object_member.h">
+    <ClInclude Include="Header\DolphinCore.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\Object\Object_inline.h">
+    <ClInclude Include="Header\DolphinMacro.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\DolphinStandardComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\DolphinStd.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\DolphinStruct.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Component\Component_forward.h">
@@ -51,16 +54,19 @@
     <ClInclude Include="Source\Core\Component\Component_member.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Application.h">
+    <ClInclude Include="Source\Core\Object\Object_forward.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\ObjectBuilder\ObjectBuilder_forward.h">
+    <ClInclude Include="Source\Core\Object\Object_inline.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\ObjectBuilder\ObjectBuilder_member.h">
+    <ClInclude Include="Source\Core\Object\Object_member.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain_forward.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain_inline.h">
@@ -69,37 +75,10 @@
     <ClInclude Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain_member.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain_forward.h">
+    <ClInclude Include="Source\Core\ObjectBuilder\ObjectBuilder_forward.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Nest\Nest.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Nest\Nest_forward.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\DolphinCore.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\DolphinStandardComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Struct\Vector2\Vector2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Struct\Angle\Angle.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\DolphinStruct.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Transform2D\Transform2D.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Window\Window.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Struct\DolphinEvent\DolphinEvent.h">
+    <ClInclude Include="Source\Core\ObjectBuilder\ObjectBuilder_member.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.h">
@@ -108,13 +87,10 @@
     <ClInclude Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer_inline.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\InputManager\InputManager.h">
+    <ClInclude Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.h">
+    <ClInclude Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.h">
@@ -129,78 +105,66 @@
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\CursorState\ICursorStateReader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyCode.h">
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\IKeyboardReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\IMouseReader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\IKeyboardReader.h">
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.h">
+    <ClInclude Include="Source\StandardComponent\InputManager\Observer\KeyCode.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utility\Utility.h">
+    <ClInclude Include="Source\StandardComponent\InputManager\InputManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.h">
+    <ClInclude Include="Source\StandardComponent\Nest\Nest.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\Nest\Nest_forward.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\Transform2D\Transform2D.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandardComponent\Window\Window.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\Angle\Angle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\DolphinEvent\DolphinEvent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\Vector2\Vector2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Core\Object\Object.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\WinMain.cpp">
+    <ClCompile Include="pch.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Component\Component.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Application.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\Nest\Nest.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\ObjectBuilder\ObjectBuilder.cpp">
+    <ClCompile Include="Source\Core\Object\Object.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\ObjectBuilder\BuilderChain\BuilderChain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Struct\Vector2\Vector2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Struct\Angle\Angle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\Transform2D\Transform2D.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\Window\Window.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Struct\DolphinEvent\DolphinEvent.cpp">
+    <ClCompile Include="Source\Core\ObjectBuilder\ObjectBuilder.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\StandardComponent\Direct2DRenderer\Direct2DRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StandardComponent\InputManager\InputManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp">
+    <ClCompile Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\StandardComponent\Direct2DSprite\Direct2DSprite.cpp">
@@ -209,19 +173,38 @@
     <ClCompile Include="Source\StandardComponent\Direct2DSprite\ImageCache.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utility\Utility.cpp">
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\ButtonStatus\ButtonStatus.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StandardComponent\Direct2DSprite\AffineBuilder.cpp">
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\CursorState\CursorState.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Application\Resource\dummy.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".clang-format" />
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\KeyboardObserver\KeyboardObserver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\Observer\MouseObserver\MouseObserver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\InputManager\InputManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\Nest\Nest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\Transform2D\Transform2D.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandardComponent\Window\Window.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Struct\Angle\Angle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Struct\DolphinEvent\DolphinEvent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Struct\Vector2\Vector2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

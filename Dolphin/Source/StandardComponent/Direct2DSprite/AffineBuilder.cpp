@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "AffineBuilder.h"
 Dolphin::StandardComponent::AffineBuilder::AffineBuilder(D2D1_RECT_F cropRect)
 {
