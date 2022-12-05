@@ -5,12 +5,12 @@
 Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)
     : Component(object)
 {
-    this->closed               = false;
-    this->className            = this->object->Name();
-    this->windowName           = L"いるかエンジン - " + this->className;
-    this->instanceHandle       = ((HINSTANCE)GetModuleHandle(0));
+    this->closed = false;
+    this->className = this->object->Name();
+    this->windowName = L"いるかlib - " + this->className;
+    this->instanceHandle = ((HINSTANCE)GetModuleHandle(0));
     this->thirdWindowProcedure = nullptr;
-    this->windowClass          = {0};
+    this->windowClass = { 0 };
     this->GenerateWindowClass(this->windowClass);
     RegisterClass(&(this->windowClass));
 
@@ -67,15 +67,15 @@ void Dolphin::StandardComponent::Window::ThirdWindowProcedure(
 
 void Dolphin::StandardComponent::Window::GenerateWindowClass(WNDCLASS& target)
 {
-    target.lpfnWndProc   = StaticWindowProc;
-    target.hInstance     = instanceHandle;
-    target.style         = CS_HREDRAW | CS_VREDRAW;
-    target.cbClsExtra    = 0;
-    target.cbWndExtra    = 0;
-    target.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
-    target.hCursor       = LoadCursor(NULL, IDC_ARROW);
+    target.lpfnWndProc = StaticWindowProc;
+    target.hInstance = instanceHandle;
+    target.style = CS_HREDRAW | CS_VREDRAW;
+    target.cbClsExtra = 0;
+    target.cbWndExtra = 0;
+    target.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    target.hCursor = LoadCursor(NULL, IDC_ARROW);
     target.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-    target.lpszMenuName  = NULL;
+    target.lpszMenuName = NULL;
     target.lpszClassName = this->className.c_str();
 }
 
@@ -88,12 +88,12 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::WindowProcedure(
 {
     switch (message)
     {
-        case WM_DESTROY:
-        {
-            this->closed = true;
-            PostQuitMessage(0);
-            break;
-        }
+    case WM_DESTROY:
+    {
+        this->closed = true;
+        PostQuitMessage(0);
+        break;
+    }
     }
 
     if (this->thirdWindowProcedure != nullptr)
@@ -125,32 +125,13 @@ LRESULT CALLBACK Dolphin::StandardComponent::Window::StaticWindowProc(
                     windowHandle,
                     message,
                     wordParam,
-                    longParam);
+                    longParam
+                );
             }
         }
     }
     else
         return This
-            ->WindowProcedure(windowHandle, message, wordParam, longParam);
+        ->WindowProcedure(windowHandle, message, wordParam, longParam);
     return DefWindowProc(windowHandle, message, wordParam, longParam);
-}
-
-
-void Dolphin::StandardComponent::Window::Start()
-{
-}
-
-
-void Dolphin::StandardComponent::Window::Tick()
-{
-    MSG message = {0};
-    if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
-    {
-        TranslateMessage(&message);
-        DispatchMessage(&message);
-    }
-    else
-    {
-        // ゲームの処理
-    }
 }
