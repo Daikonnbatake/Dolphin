@@ -1,4 +1,5 @@
-﻿#include "Window.h"
+﻿#include "pch.h"
+#include "Window.h"
 
 
 Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)

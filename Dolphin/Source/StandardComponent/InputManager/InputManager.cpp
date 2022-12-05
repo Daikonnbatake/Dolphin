@@ -1,4 +1,5 @@
-﻿#include "InputManager.h"
+﻿#include "pch.h"
+#include "InputManager.h"
 
 #include <iostream>
 

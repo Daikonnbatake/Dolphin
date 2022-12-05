@@ -1,4 +1,5 @@
-﻿#include "ObjectBuilder_member.h"
+﻿#include "pch.h"
+#include "ObjectBuilder_member.h"
 
 
 Dolphin::BuilderChain Dolphin::ObjectBuilder::Instantiate(string name)

@@ -1,4 +1,5 @@
-﻿#include "Nest.h"
+﻿#include "pch.h"
+#include "Nest.h"
 
 
 Dolphin::StandardComponent::Nest::Nest(Dolphin::Core::Object* object)
