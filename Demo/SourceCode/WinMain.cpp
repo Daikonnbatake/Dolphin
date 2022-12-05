@@ -9,6 +9,7 @@
 #include <wincodec.h>
 #include <windows.h>
 #include <iostream>
+#include <thread>
 
 namespace Dolphin
 {
@@ -27,36 +28,36 @@ namespace Dolphin
             .AddComponent<InputManager>()
             .Child(
                 NEW(L"ChildWindow1")
+                .AddComponent<Transform2D>()
+                .AddComponent<Window>()
+                .AddComponent<Direct2DRenderer>()
+                .Child(
+                    NEW(L"Sprite1")
                     .AddComponent<Transform2D>()
-                    .AddComponent<Window>()
-                    .AddComponent<Direct2DRenderer>()
-                    .Child(
-                        NEW(L"Sprite1")
-                        .AddComponent<Transform2D>()
-                        .AddComponent<Direct2DSprite>()
-                    )
+                    .AddComponent<Direct2DSprite>()
+                )
             )
             .Child(
                 NEW(L"ChildWindow2")
+                .AddComponent<Transform2D>()
+                .AddComponent<Window>()
+                .AddComponent<Direct2DRenderer>()
+                .Child(
+                    NEW(L"Sprite2")
                     .AddComponent<Transform2D>()
-                    .AddComponent<Window>()
-                    .AddComponent<Direct2DRenderer>()
-                    .Child(
-                        NEW(L"Sprite2")
-                            .AddComponent<Transform2D>()
-                            .AddComponent<Direct2DSprite>()
-                    )
+                    .AddComponent<Direct2DSprite>()
+                )
             )
             .Child(
                 NEW(L"ChildWindow3")
+                .AddComponent<Transform2D>()
+                .AddComponent<Window>()
+                .AddComponent<Direct2DRenderer>()
+                .Child(
+                    NEW(L"Sprite3")
                     .AddComponent<Transform2D>()
-                    .AddComponent<Window>()
-                    .AddComponent<Direct2DRenderer>()
-                    .Child(
-                        NEW(L"Sprite3")
-                        .AddComponent<Transform2D>()
-                        .AddComponent<Direct2DSprite>()
-                    )
+                    .AddComponent<Direct2DSprite>()
+                )
             );
     }
 
@@ -73,10 +74,10 @@ namespace Dolphin
         auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
         auto sprite3 = root->Nest()->GetChild(L"ChildWindow3")->Nest()->GetChild(L"Sprite3")->GetComponent<Direct2DSprite>();
 
-        sprite1->ImagePath(L"C:/Users/taise/Pictures/クソ画像/zunda_fx.png");
-        sprite1->Clipping(64, 64, 128, 128);
-        sprite2->ImagePath(L"C:/Users/taise/Pictures/クソ画像/zunda_fx.png");
-        sprite3->ImagePath(L"C:/Users/taise/Pictures/クソ画像/zunda_fx.png");
+        sprite1->ImagePath(L"../../OtherResource/todo.png");
+        sprite1->Clipping(0, 16, 128, 64);
+        sprite2->ImagePath(L"../../OtherResource/todo.png");
+        sprite3->ImagePath(L"../../OtherResource/todo.png");
         sprite3->AffineTransform(AffineBuilder(sprite3->CropRect()).FlipX());
 
         degrees = 0;
@@ -85,19 +86,19 @@ namespace Dolphin
 
     /**************************************************************************
      *
-     * アプリケーションの内部更新処理.
+     * アプリケーションの更新処理.
      *
      *************************************************************************/
     void Update(Application& app)
     {
-        auto root    = app.Root();
+        auto root = app.Root();
         auto sprite1 = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<Direct2DSprite>();
         auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
 
         degrees = (degrees + 0.1L);
         AffineBuilder transform1 = AffineBuilder(sprite1->CropRect());
         AffineBuilder transform2 = AffineBuilder(sprite2->CropRect());
-        transform1.Origin(0, 1).Rotate(degrees);
+        transform1.Rotate(degrees);
         transform2.Rotate(degrees);
         sprite1->AffineTransform(transform1);
         sprite2->AffineTransform(transform2);
@@ -106,26 +107,6 @@ namespace Dolphin
         auto rootWindow = app.Root()->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
         if (rootWindow->Closed())
             app.Quit();
-    }
-
-
-    /**************************************************************************
-     *
-     * アプリケーションの画面描画処理.
-     *
-     *************************************************************************/
-    void Rendering(Application& app)
-    {
-    }
-
-
-    /**************************************************************************
-     *
-     * アプリケーションの解放処理.
-     *
-     *************************************************************************/
-    void Release(Application& app)
-    {
     }
 }
 
@@ -145,6 +126,27 @@ int WINAPI WinMain(
     Angle       a = Angle(50);
     double      b = a.Degree();
 
-    while (!app.IsQuit()) { app.Tick(); }
+    //ゲーム処理のスレッド
+    auto gameThread = std::thread(
+    [&](){
+            while (!app.IsQuit())
+            {
+                app.Tick();
+            }
+        }
+    );
+
+    //メッセージループ
+    while (!app.IsQuit())
+    {
+        MSG message = { 0 };
+        if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
+        {
+            TranslateMessage(&message);
+            DispatchMessage(&message);
+        }
+    }
+
+    gameThread.join();
     return 0;
 }

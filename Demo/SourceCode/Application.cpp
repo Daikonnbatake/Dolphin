@@ -30,7 +30,6 @@ void Dolphin::Application::Tick()
     {
         // Tick 毎の処理
         Dolphin::Update(*this);
-        Dolphin::Rendering(*this);
     }
     else
     {
@@ -44,7 +43,6 @@ void Dolphin::Application::Tick()
 Dolphin::Application::~Application()
 {
     DELL(this->rootObject);
-    Dolphin::Release(*this);
 }
 
 

@@ -26,8 +26,6 @@ namespace Dolphin
             function<LRESULT(HWND, UINT, WPARAM, LPARAM)> thirdWindowProcedure;
 
 
-            void                                          Start() override;
-            void                                          Tick() override;
             void                                          Quit();
             void             GenerateWindowClass(WNDCLASS& target);
             LRESULT CALLBACK WindowProcedure(

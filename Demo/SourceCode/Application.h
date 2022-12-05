@@ -8,8 +8,6 @@ namespace Dolphin
     Object*       InitObjectTree();
     void          Start(Application& app);
     void          Update(Application& app);
-    void          Rendering(Application& app);
-    void          Release(Application& app);
 
     class Application
     {
