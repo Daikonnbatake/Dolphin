@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "Dolphin.h"
 
+#include <chrono>
 #include <d2d1.h>
 #include <d2d1helper.h>
 #include <dwrite.h>
@@ -95,7 +96,7 @@ namespace Dolphin
         auto sprite1 = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<Direct2DSprite>();
         auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
 
-        degrees = (degrees + 0.1L);
+        degrees = (degrees + 1L);
         AffineBuilder transform1 = AffineBuilder(sprite1->CropRect());
         AffineBuilder transform2 = AffineBuilder(sprite2->CropRect());
         transform1.Rotate(degrees);
@@ -126,12 +127,23 @@ int WINAPI WinMain(
     Angle       a = Angle(50);
     double      b = a.Degree();
 
-    //ゲーム処理のスレッド
+    //ゲーム処理のスレッド(ほぼ 60fps 固定)
     auto gameThread = std::thread(
     [&](){
+            using namespace std::chrono;
+            microseconds sleepTime = microseconds(16666);
             while (!app.IsQuit())
             {
+                system_clock::time_point begin;
+                system_clock::time_point end;
+
+                begin = system_clock::now();
                 app.Tick();
+                end = system_clock::now();
+                
+                auto diff = end - begin;
+                auto sleep = sleepTime - diff;
+                if (0 < sleep.count()) std::this_thread::sleep_for(sleepTime - diff);
             }
         }
     );

@@ -144,6 +144,9 @@
     <ClInclude Include="Source\Struct\Vector2\Vector2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Utilities\Time.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -204,6 +207,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Struct\Vector2\Vector2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\Time.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
