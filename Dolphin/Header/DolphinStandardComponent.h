@@ -7,6 +7,9 @@
 // Direct2DSprite
 #include "Source/StandardComponent/Direct2DSprite/Direct2DSprite.h"
 
+// DirectWriteText
+#include "Source/StandardComponent/DirectWriteText/DirectWriteText.h"
+
 // inputManager
 #include "Source/StandardComponent/InputManager/InputManager.h"
 #include "Source/StandardComponent/InputManager/Observer/ButtonStatus/IButtonReader.h"
