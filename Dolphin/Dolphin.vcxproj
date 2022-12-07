@@ -201,7 +201,6 @@
     <ClInclude Include="Source\Struct\Angle\Angle.h" />
     <ClInclude Include="Source\Struct\DolphinEvent\DolphinEvent.h" />
     <ClInclude Include="Source\Struct\Vector2\Vector2.h" />
-    <ClInclude Include="Source\Utilities\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -229,7 +228,6 @@
     <ClCompile Include="Source\Struct\Angle\Angle.cpp" />
     <ClCompile Include="Source\Struct\DolphinEvent\DolphinEvent.cpp" />
     <ClCompile Include="Source\Struct\Vector2\Vector2.cpp" />
-    <ClCompile Include="Source\Utilities\Time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
