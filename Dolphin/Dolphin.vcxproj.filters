@@ -144,7 +144,7 @@
     <ClInclude Include="Source\Struct\Vector2\Vector2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utilities\Time.h">
+    <ClInclude Include="Source\StandardComponent\DirectWriteText\DirectWriteText.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -209,7 +209,7 @@
     <ClCompile Include="Source\Struct\Vector2\Vector2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utilities\Time.cpp">
+    <ClCompile Include="Source\StandardComponent\DirectWriteText\DirectWriteText.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

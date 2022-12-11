@@ -36,6 +36,7 @@ namespace Dolphin
                     NEW(L"Sprite1")
                     .AddComponent<Transform2D>()
                     .AddComponent<Direct2DSprite>()
+                    .AddComponent<DirectWriteText>()
                 )
             )
             .Child(
@@ -74,6 +75,7 @@ namespace Dolphin
         auto sprite1 = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<Direct2DSprite>();
         auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
         auto sprite3 = root->Nest()->GetChild(L"ChildWindow3")->Nest()->GetChild(L"Sprite3")->GetComponent<Direct2DSprite>();
+        auto text = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<DirectWriteText>();
 
         sprite1->ImagePath(L"../../OtherResource/todo.png");
         sprite1->Clipping(0, 16, 128, 64);
