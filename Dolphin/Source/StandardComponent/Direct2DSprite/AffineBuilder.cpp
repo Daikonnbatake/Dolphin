@@ -21,6 +21,19 @@ Dolphin::StandardComponent::AffineBuilder::ReadMatrix()
 
 
 Dolphin::StandardComponent::AffineBuilder&
+Dolphin::StandardComponent::AffineBuilder::Translation(float posX, float posY)
+{
+    float relativeX = posX - this->origin.x;
+    float relativeY = posY - this->origin.y;
+    this->matrix = this->matrix * D2D1::Matrix3x2F::Translation(
+        relativeX,
+        relativeY
+    );
+    return *this;
+}
+
+
+Dolphin::StandardComponent::AffineBuilder&
 Dolphin::StandardComponent::AffineBuilder::Scale(
     float scaleX,
     float scaleY

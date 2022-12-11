@@ -21,8 +21,8 @@ namespace Dolphin
             WNDCLASS                                      windowClass;
             string                                        className;
             string                                        windowName;
-            Dolphin::Struct::Vector2                      position;
-            Dolphin::Struct::Vector2                      size;
+            Struct::Vector2                               position;
+            Struct::Vector2                               size;
             function<LRESULT(HWND, UINT, WPARAM, LPARAM)> thirdWindowProcedure;
 
 
@@ -41,15 +41,16 @@ namespace Dolphin
 
           public:
             Window(Dolphin::Core::Object* object);
-            bool                      Closed();
-            HWND                      WindowHandle();
-            Dolphin::Struct::Vector2& Position();
-            Dolphin::Struct::Vector2& Size();
-            string                    Title();
-            void                      Title(string title);
-            void                      Style(long windowStyle);
-            void                      ThirdWindowProcedure(
-                                     function<LRESULT(HWND, UINT, WPARAM, LPARAM)> windowProc);
+            bool             Closed();
+            HWND             WindowHandle();
+            void             Position(Struct::Vector2& position);
+            Struct::Vector2  Position();
+            void             Size(Struct::Vector2& size);
+            Struct::Vector2  Size();
+            string           Title();
+            void             Title(string title);
+            void             Style(long windowStyle);
+            void             ThirdWindowProcedure(function<LRESULT(HWND, UINT, WPARAM, LPARAM)> windowProc);
         };
     }
 }

@@ -11,6 +11,8 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)
     this->instanceHandle = ((HINSTANCE)GetModuleHandle(0));
     this->thirdWindowProcedure = nullptr;
     this->windowClass = { 0 };
+    this->position = Struct::Vector2(300, 300);
+    this->size = Struct::Vector2(480, 320);
     this->GenerateWindowClass(this->windowClass);
     RegisterClass(&(this->windowClass));
 
@@ -20,8 +22,8 @@ Dolphin::StandardComponent::Window::Window(Dolphin::Core::Object* object)
         WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
-        480,
-        320,
+        this->size.X(),
+        this->size.Y(),
         ((this->parentHandle != nullptr) ? this->parentHandle : NULL),
         NULL,
         this->instanceHandle,
@@ -50,11 +52,41 @@ std::wstring Dolphin::StandardComponent::Window::Title()
 {
     return this->windowName;
 }
-Dolphin::Struct::Vector2& Dolphin::StandardComponent::Window::Position()
+
+void Dolphin::StandardComponent::Window::Position(Struct::Vector2& position)
+{
+    RECT rect;
+    GetClientRect(this->windowHandle, &rect);
+    MoveWindow(
+        this->windowHandle,
+        position.X(),
+        position.Y(),
+        rect.right - rect.left,
+        rect.bottom - rect.top,
+        FALSE
+    );
+}
+
+Dolphin::Struct::Vector2 Dolphin::StandardComponent::Window::Position()
 {
     return this->position;
 }
-Dolphin::Struct::Vector2& Dolphin::StandardComponent::Window::Size()
+
+void Dolphin::StandardComponent::Window::Size(Struct::Vector2& size)
+{
+    RECT rect;
+    GetClientRect(this->windowHandle, &rect);
+    MoveWindow(
+        this->windowHandle,
+        rect.left,
+        rect.top,
+        size.X(),
+        size.Y(),
+        FALSE
+    );
+}
+
+Dolphin::Struct::Vector2 Dolphin::StandardComponent::Window::Size()
 {
     return this->size;
 }
