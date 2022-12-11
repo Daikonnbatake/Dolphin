@@ -70,10 +70,10 @@ void Dolphin::StandardComponent::DirectWriteText::Tick()
     RECT rect;
     GetClientRect(this->windowHandle, &rect);
     D2D1_RECT_F layoutRect = D2D1::RectF(
-        static_cast<FLOAT>(rect.left) / 96.0f,
-        static_cast<FLOAT>(rect.top) / 96.0f,
-        static_cast<FLOAT>(rect.right) / 96.0f,
-        static_cast<FLOAT>(rect.bottom) / 96.0f
+        static_cast<FLOAT>(rect.left),
+        static_cast<FLOAT>(rect.top),
+        static_cast<FLOAT>(rect.right),
+        static_cast<FLOAT>(rect.bottom)
     );
 
     this->deviceContext->DrawTextW(
