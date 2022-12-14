@@ -26,7 +26,7 @@ namespace Dolphin
 
           public:
             static Object*                    Instantiate(string name);
-            static void                       Destroy(Object* target);
+            static void                       Destroy(Object** target);
 
             Dolphin::StandardComponent::Nest* Nest();
             bool                              IsActive();

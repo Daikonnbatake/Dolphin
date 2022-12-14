@@ -17,7 +17,12 @@ Dolphin::Core::Object::Object(string name)
 void Dolphin::Core::Object::Start()
 {
     int length = this->components->size();
-    FOR(i, length) (*this->components)[length-i-1]->Start();
+    for (int i = 0; i < length; ++i)
+    {
+        (*this->components)[length -i -1]->Start();
+        length = this->components->size();
+    }
+
     this->onStart = false;
 }
 
@@ -28,9 +33,23 @@ void Dolphin::Core::Object::Tick()
         return;
     if (this->onStart)
         this->Start();
-    int length = this->components->size();
-    FOR(i, length) (*this->components)[length-i-1]->Tick();
-    FOR(i, length) (*this->components)[length-i-1]->LateTick();
+
+    int length;
+    length = this->components->size();
+
+    for (int i = 0; i < length; ++i)
+    {
+        (*this->components)[length -i -1]->Tick();
+        length = this->components->size();
+    }
+    
+    length = this->components->size();
+
+    for (int i = 0; i < length; ++i)
+    {
+        (*this->components)[length -i -1]->LateTick();
+        length = this->components->size();
+    }
 }
 
 
@@ -72,4 +91,10 @@ Dolphin::Core::Object* Dolphin::Core::Object::Instantiate(string name)
 }
 
 
-void Dolphin::Core::Object::Destroy(Object* target) { RELEASE(target); }
+void Dolphin::Core::Object::Destroy(Object** target)
+{
+    Object* tmp = *target;
+    delete tmp;
+    *target = nullptr;
+    target = nullptr;
+}
