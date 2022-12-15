@@ -128,7 +128,7 @@ namespace Dolphin
         sprite2->AffineTransform(transform2);
         sprite3->AffineTransform(transform3);
 
-        /*
+
         Object* obj = root->Nest()->GetChild(L"added");
         if (obj == nullptr)
         {
@@ -138,7 +138,6 @@ namespace Dolphin
         {
             DELL(&obj);
         }
-        */
 
         auto rootWindow = app.Root()->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
         if (rootWindow->Closed())

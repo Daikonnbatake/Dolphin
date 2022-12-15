@@ -93,8 +93,22 @@ Dolphin::Core::Object* Dolphin::Core::Object::Instantiate(string name)
 
 void Dolphin::Core::Object::Destroy(Object** target)
 {
-    Object* tmp = *target;
-    delete tmp;
-    *target = nullptr;
-    target = nullptr;
+    if ((*target)->nest->parent != nullptr)
+    {
+        auto begin = (*target)->nest->parent->nest->children.begin();
+        auto end   = (*target)->nest->parent->nest->children.end();
+
+        for (auto itr = begin; itr != end; ++itr)
+        {
+            if ((*itr) == (*target))
+            {
+                (*target)->nest->parent->nest->children.erase(itr);
+                break;
+            }
+        }
+
+        delete (*target);
+        *target = nullptr;
+        target = nullptr;
+    }
 }

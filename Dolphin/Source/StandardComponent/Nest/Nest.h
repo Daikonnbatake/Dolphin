@@ -10,6 +10,8 @@ namespace Dolphin
     {
         class Nest : public Dolphin::Core::Component
         {
+          friend Core::Object;
+
           private:
             Dolphin::Core::Object*         parent;
             vector<Dolphin::Core::Object*> children;
