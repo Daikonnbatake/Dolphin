@@ -11,7 +11,8 @@ Dolphin::StandardComponent::Nest::Nest(Dolphin::Core::Object* object)
 
 Dolphin::StandardComponent::Nest::~Nest()
 {
-    FOREACH(e, this->children) Dolphin::Core::Object::Destroy(e);
+    int length = this->children.size();
+    for (int i = 0; i < length; ++i) Core::Object::Destroy(&this->children[length]);
 }
 
 
@@ -26,15 +27,16 @@ int Dolphin::StandardComponent::Nest::ChildCount()
 
 
 Dolphin::Core::Object*
-Dolphin::StandardComponent::Nest::MoveTo(Dolphin::Core::Object* target)
+Dolphin::StandardComponent::Nest::MoveTo(Core::Object* target)
 {
     Nest* nowParent = this->object->GetComponent<Nest>();
     Nest* newParent = target->GetComponent<Nest>();
-    FOR(i, (int)nowParent->children.size())
+    int length = nowParent->children.size();
+    for (int i = 0; i < length; ++i)
     {
         if (nowParent->children[i] == this->object)
         {
-            Dolphin::Core::Object::Destroy(nowParent->children[i]);
+            Dolphin::Core::Object::Destroy(&nowParent->children[i]);
             nowParent->children.erase(nowParent->children.begin() + i);
         }
     }
@@ -46,12 +48,20 @@ Dolphin::StandardComponent::Nest::MoveTo(Dolphin::Core::Object* target)
 }
 
 
+Dolphin::Core::Object*
+Dolphin::StandardComponent::Nest::AddChild(string name)
+{
+    Core::Object* child = NEW(name);
+    return child->Nest()->MoveTo(this->object);
+}
+
+
 Dolphin::Core::Object* Dolphin::StandardComponent::Nest::GetChild(string name)
 {
-    FOREACH(e, this->children)
+    
+    for (auto itr : this->children)
     {
-        if (e->Name() == name)
-            return e;
+        if (itr->Name() == name) return itr;
     }
     return nullptr;
 }
@@ -59,5 +69,20 @@ Dolphin::Core::Object* Dolphin::StandardComponent::Nest::GetChild(string name)
 
 void Dolphin::StandardComponent::Nest::Tick()
 {
-    FOREACH(e, this->children) e->Tick();
+    int length = this->children.size();
+    for (int i = 0; i < length; ++i)
+    {
+        if (this->children[i] == nullptr)
+        {
+            auto itr = this->children.begin() + i;
+            this->children.erase(itr);
+            --i;
+            --length;
+            continue;
+        }
+        // なんとか childern[i] を nullptr にできないかしら
+        // それか deleted 判定したい
+        this->children[i]->Tick();
+        length = this->children.size();
+    }
 }

@@ -42,7 +42,7 @@ void Dolphin::Application::Tick()
 
 Dolphin::Application::~Application()
 {
-    DELL(this->rootObject);
+    DELL(&this->rootObject);
 }
 
 

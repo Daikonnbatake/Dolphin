@@ -77,10 +77,10 @@ namespace Dolphin
         auto sprite3 = root->Nest()->GetChild(L"ChildWindow3")->Nest()->GetChild(L"Sprite3")->GetComponent<Direct2DSprite>();
         auto text = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<DirectWriteText>();
 
-        sprite1->ImagePath(L"../../OtherResource/todo.png");
-        sprite1->Clipping(0, 16, 128, 64);
-        sprite2->ImagePath(L"../../OtherResource/todo.png");
-        sprite3->ImagePath(L"../../OtherResource/todo.png");
+        sprite1->ImagePath(L"../../OtherResource/demo.png");
+        //sprite1->Clipping(0, 16, 128, 64);
+        sprite2->ImagePath(L"../../OtherResource/demo.png");
+        sprite3->ImagePath(L"../../OtherResource/demo.png");
         sprite3->AffineTransform(AffineBuilder(sprite3->CropRect()).FlipX());
 
         degrees = 0;
@@ -95,17 +95,51 @@ namespace Dolphin
     void Update(Application& app)
     {
         auto root = app.Root();
+        auto window1 = root->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
+        auto window2 = root->Nest()->GetChild(L"ChildWindow2")->GetComponent<Window>();
+        auto window3 = root->Nest()->GetChild(L"ChildWindow3")->GetComponent<Window>();
         auto sprite1 = root->Nest()->GetChild(L"ChildWindow1")->Nest()->GetChild(L"Sprite1")->GetComponent<Direct2DSprite>();
         auto sprite2 = root->Nest()->GetChild(L"ChildWindow2")->Nest()->GetChild(L"Sprite2")->GetComponent<Direct2DSprite>();
+        auto sprite3 = root->Nest()->GetChild(L"ChildWindow3")->Nest()->GetChild(L"Sprite3")->GetComponent<Direct2DSprite>();
 
         degrees = (degrees + 1L);
+        RECT window1Rect;
+        RECT window2Rect;
+        RECT window3Rect;
+        RECT client1Rect;
+        GetWindowRect(window1->WindowHandle(), &window1Rect);
+        GetWindowRect(window2->WindowHandle(), &window2Rect);
+        GetWindowRect(window3->WindowHandle(), &window3Rect);
+        GetClientRect(window1->WindowHandle(), &client1Rect);
+
+        // window1 のクライアント領域の座標を取りたい
+        int offsetX = (window1Rect.right - window1Rect.left) - (client1Rect.right - client1Rect.left);
+        int offsetY = (window1Rect.bottom - window1Rect.top) - (client1Rect.bottom - client1Rect.top);
+
         AffineBuilder transform1 = AffineBuilder(sprite1->CropRect());
         AffineBuilder transform2 = AffineBuilder(sprite2->CropRect());
-        transform1.Rotate(degrees);
-        transform2.Rotate(degrees);
+        AffineBuilder transform3 = AffineBuilder(sprite3->CropRect());
+
+        transform1.Origin(0, 0).Translation(-window1Rect.left - offsetX, -window1Rect.top - offsetY);
+        transform2.Origin(0, 0).Translation(-window2Rect.left - offsetX, -window2Rect.top - offsetY);
+        transform3.Origin(0, 0).Translation(-window3Rect.left - offsetX, -window3Rect.top - offsetY);
+        //transform2.Rotate(degrees);
         sprite1->AffineTransform(transform1);
         sprite2->AffineTransform(transform2);
+        sprite3->AffineTransform(transform3);
 
+
+
+        // イテレータ破壊の検証用コード(子オブジェクト抜き差し / コンポーネント抜き差し)
+
+        Object* obj = root->Nest()->GetChild(L"added");
+        Component* c = root->GetComponent<Transform2D>();
+
+        if (obj == nullptr) root->Nest()->AddChild(L"added");
+        else DELL(&obj);
+
+        if (c == nullptr) root->AddComponent<Transform2D>();
+        else root->PopComponent(c);
 
         auto rootWindow = app.Root()->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
         if (rootWindow->Closed())
@@ -142,10 +176,10 @@ int WINAPI WinMain(
                 begin = system_clock::now();
                 app.Tick();
                 end = system_clock::now();
-                
+
                 auto diff = end - begin;
                 auto sleep = sleepTime - diff;
-                if (0 < sleep.count()) std::this_thread::sleep_for(sleepTime - diff);
+                //if (0 < sleep.count()) std::this_thread::sleep_for(sleepTime - diff);
             }
         }
     );

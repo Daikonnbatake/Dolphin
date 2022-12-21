@@ -1,8 +1,7 @@
 ﻿#pragma once
+#include "DolphinCore.h"
 #include "DolphinMacro.h"
 #include "DolphinStd.h"
-#include "Source/Core/Component/Component_member.h"
-#include "Source/Core/Object/Object_inline.h"
 
 
 namespace Dolphin
@@ -11,6 +10,8 @@ namespace Dolphin
     {
         class Nest : public Dolphin::Core::Component
         {
+          friend Core::Object;
+
           private:
             Dolphin::Core::Object*         parent;
             vector<Dolphin::Core::Object*> children;
@@ -20,10 +21,11 @@ namespace Dolphin
           public:
             Nest(Dolphin::Core::Object* object);
             ~Nest() override;
-            int                    ChildCount();
-            Dolphin::Core::Object* Parent();
-            Dolphin::Core::Object* MoveTo(Dolphin::Core::Object* target);
-            Dolphin::Core::Object* GetChild(string name);
+            int           ChildCount();
+            Core::Object* Parent();
+            Core::Object* MoveTo(Core::Object* target);
+            Core::Object* AddChild(string name);
+            Core::Object* GetChild(string name);
         };
     }
 }

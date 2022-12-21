@@ -1,5 +1,4 @@
 ﻿#include "pch.h"
-#include "DolphinMacro.h"
 #include "Object_member.h"
 #include "Source/StandardComponent/Nest/Nest.h"
 
@@ -17,7 +16,12 @@ Dolphin::Core::Object::Object(string name)
 void Dolphin::Core::Object::Start()
 {
     int length = this->components->size();
-    FOR(i, length) (*this->components)[length-i-1]->Start();
+    for (int i = 0; i < length; ++i)
+    {
+        (*this->components)[length -i -1]->Start();
+        length = this->components->size();
+    }
+
     this->onStart = false;
 }
 
@@ -28,16 +32,36 @@ void Dolphin::Core::Object::Tick()
         return;
     if (this->onStart)
         this->Start();
-    int length = this->components->size();
-    FOR(i, length) (*this->components)[length-i-1]->Tick();
-    FOR(i, length) (*this->components)[length-i-1]->LateTick();
+
+    int length;
+    length = this->components->size();
+
+    for (int i = 0; i < length; ++i)
+    {
+        (*this->components)[length -i -1]->Tick();
+        length = this->components->size();
+    }
+    
+    length = this->components->size();
+
+    for (int i = 0; i < length; ++i)
+    {
+        (*this->components)[length -i -1]->LateTick();
+        length = this->components->size();
+    }
 }
 
 
 Dolphin::Core::Object::~Object()
 {
-    FOREACH(e, *this->components) RELEASE(e);
-    RELEASE(this->components);
+    int length = this->components->size();
+    for (int i = 0; i < length; ++i)
+    {
+        delete (*this->components)[i];
+        (*this->components)[i] = nullptr;
+    }
+    delete this->components;
+    this->components = nullptr;
 }
 
 
@@ -54,11 +78,12 @@ Dolphin::StandardComponent::Nest* Dolphin::Core::Object::Nest()
 void Dolphin::Core::Object::PopComponent(Component* target)
 {
     int componentCount = (int)this->components->size();
-    FOR(i, componentCount)
+    for (int i = 0; i < componentCount; ++i)
     {
         if ((*this->components)[i] == target)
         {
-            RELEASE(target);
+            delete target;
+            target = nullptr;
             this->components->erase(this->components->begin() + i);
             break;
         }
@@ -72,4 +97,24 @@ Dolphin::Core::Object* Dolphin::Core::Object::Instantiate(string name)
 }
 
 
-void Dolphin::Core::Object::Destroy(Object* target) { RELEASE(target); }
+void Dolphin::Core::Object::Destroy(Object** target)
+{
+    if ((*target)->nest->parent != nullptr)
+    {
+        auto begin = (*target)->nest->parent->nest->children.begin();
+        auto end   = (*target)->nest->parent->nest->children.end();
+
+        for (auto itr = begin; itr != end; ++itr)
+        {
+            if ((*itr) == (*target))
+            {
+                (*target)->nest->parent->nest->children.erase(itr);
+                break;
+            }
+        }
+
+        delete (*target);
+        *target = nullptr;
+        target = nullptr;
+    }
+}

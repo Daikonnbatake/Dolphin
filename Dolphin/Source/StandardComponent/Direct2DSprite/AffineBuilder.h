@@ -20,6 +20,7 @@ namespace Dolphin
           public:
             AffineBuilder(D2D1_RECT_F cropRect);
             D2D1_MATRIX_3X2_F ReadMatrix();
+            AffineBuilder&    Translation(float posX, float posY);
             AffineBuilder&    Scale(float scaleX, float scaleY);
             AffineBuilder&    Rotate(float degrees);
             AffineBuilder&    FlipX();

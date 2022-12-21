@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <vector>
+#include <list>
 
 namespace Dolphin
 {
@@ -11,5 +12,6 @@ namespace Dolphin
     using std::unordered_set;
     using std::unordered_map;
     using std::vector;
+    using std::list;
     using string = std::wstring;
 }
