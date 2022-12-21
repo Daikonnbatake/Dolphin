@@ -129,15 +129,17 @@ namespace Dolphin
         sprite3->AffineTransform(transform3);
 
 
+
+        // イテレータ破壊の検証用コード(子オブジェクト抜き差し / コンポーネント抜き差し)
+
         Object* obj = root->Nest()->GetChild(L"added");
-        if (obj == nullptr)
-        {
-            root->Nest()->AddChild(L"added");
-        }
-        else
-        {
-            DELL(&obj);
-        }
+        Component* c = root->GetComponent<Transform2D>();
+
+        if (obj == nullptr) root->Nest()->AddChild(L"added");
+        else DELL(&obj);
+
+        if (c == nullptr) root->AddComponent<Transform2D>();
+        else root->PopComponent(c);
 
         auto rootWindow = app.Root()->Nest()->GetChild(L"ChildWindow1")->GetComponent<Window>();
         if (rootWindow->Closed())

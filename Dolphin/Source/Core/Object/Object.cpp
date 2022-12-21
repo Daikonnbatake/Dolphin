@@ -1,5 +1,4 @@
 ﻿#include "pch.h"
-#include "DolphinMacro.h"
 #include "Object_member.h"
 #include "Source/StandardComponent/Nest/Nest.h"
 
@@ -55,8 +54,14 @@ void Dolphin::Core::Object::Tick()
 
 Dolphin::Core::Object::~Object()
 {
-    FOREACH(e, *this->components) RELEASE(e);
-    RELEASE(this->components);
+    int length = this->components->size();
+    for (int i = 0; i < length; ++i)
+    {
+        delete (*this->components)[i];
+        (*this->components)[i] = nullptr;
+    }
+    delete this->components;
+    this->components = nullptr;
 }
 
 
@@ -73,11 +78,12 @@ Dolphin::StandardComponent::Nest* Dolphin::Core::Object::Nest()
 void Dolphin::Core::Object::PopComponent(Component* target)
 {
     int componentCount = (int)this->components->size();
-    FOR(i, componentCount)
+    for (int i = 0; i < componentCount; ++i)
     {
         if ((*this->components)[i] == target)
         {
-            RELEASE(target);
+            delete target;
+            target = nullptr;
             this->components->erase(this->components->begin() + i);
             break;
         }

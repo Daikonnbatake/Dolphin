@@ -11,7 +11,8 @@ Dolphin::StandardComponent::Nest::Nest(Dolphin::Core::Object* object)
 
 Dolphin::StandardComponent::Nest::~Nest()
 {
-    FOREACH(e, this->children) Dolphin::Core::Object::Destroy(&e);
+    int length = this->children.size();
+    for (int i = 0; i < length; ++i) Core::Object::Destroy(&this->children[length]);
 }
 
 
@@ -30,7 +31,8 @@ Dolphin::StandardComponent::Nest::MoveTo(Core::Object* target)
 {
     Nest* nowParent = this->object->GetComponent<Nest>();
     Nest* newParent = target->GetComponent<Nest>();
-    FOR(i, (int)nowParent->children.size())
+    int length = nowParent->children.size();
+    for (int i = 0; i < length; ++i)
     {
         if (nowParent->children[i] == this->object)
         {
@@ -56,10 +58,10 @@ Dolphin::StandardComponent::Nest::AddChild(string name)
 
 Dolphin::Core::Object* Dolphin::StandardComponent::Nest::GetChild(string name)
 {
-    FOREACH(e, this->children)
+    
+    for (auto itr : this->children)
     {
-        if (e->Name() == name)
-            return e;
+        if (itr->Name() == name) return itr;
     }
     return nullptr;
 }
